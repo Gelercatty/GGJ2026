@@ -64,5 +64,12 @@ namespace GGJ2026
         public string SuspectId;       // 对应 CaseData 里的 suspect 条目 id 或 index 映射
         public bool ShowRaw;     // 是否已开灯显示囚照
     }
-   
+    
+    // SO数据
+    [Serializable]
+    public class CaseItem
+    {
+        public string CaseId;
+        
+    }
 }
