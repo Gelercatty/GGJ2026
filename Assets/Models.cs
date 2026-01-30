@@ -21,32 +21,6 @@ namespace GGJ2026
         protected override void OnInit() { }
     }
     
-    // 资产模型 (?
-    public class CaseLibraryModel : AbstractModel
-    {
-        public BindableProperty<int> LibraryVersion { get; } = new(0);
-
-        private readonly List<string> mCaseIds = new();
-        public IReadOnlyList<string> CaseIds => mCaseIds;
-
-        private readonly Dictionary<string, object> mCaseMap = new();
-
-        public void RegisterCase(string caseId, object caseData)
-        {
-            if (!mCaseMap.ContainsKey(caseId))
-            {
-                mCaseIds.Add(caseId);
-            }
-            mCaseMap[caseId] = caseData;
-            LibraryVersion.Value++;
-        }
-
-        public bool TryGetCase(string caseId, out object caseData)
-            => mCaseMap.TryGetValue(caseId, out caseData);
-
-        protected override void OnInit() { }
-    }
-
     // 第一阶段UI的Model    
     public class Stage1Model : AbstractModel
     {   // 候选的id
@@ -102,6 +76,39 @@ namespace GGJ2026
         public BindableProperty<DragPayloadType> PayloadType { get; } = new(DragPayloadType.None);
         public BindableProperty<string> PayloadId { get; } = new(string.Empty);
         public BindableProperty<string> HoverZoneId { get; } = new(string.Empty);
+
+        protected override void OnInit() { }
+    }
+    
+    
+    
+    // 资产模型
+    public interface ICaseLibraryModel : IModel
+    {
+        IReadOnlyList<string> CaseIds { get; }
+        void Register(CasePackSO c);
+        bool TryGet(string caseId, out CasePackSO c);
+    }
+
+    public class CaseLibraryModel : AbstractModel, ICaseLibraryModel
+    {
+        private readonly List<string> _ids = new();
+        private readonly Dictionary<string, CasePackSO> _map = new();
+
+        public IReadOnlyList<string> CaseIds => _ids;
+
+        public void Register(CasePackSO c)
+        {
+            if (c == null || string.IsNullOrWhiteSpace(c.caseId)) return;
+
+            if (!_map.ContainsKey(c.caseId))
+                _ids.Add(c.caseId);
+
+            _map[c.caseId] = c;
+        }
+
+        public bool TryGet(string caseId, out CasePackSO c)
+            => _map.TryGetValue(caseId, out c);
 
         protected override void OnInit() { }
     }
