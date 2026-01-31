@@ -8,7 +8,7 @@ namespace GGJ2026
     // 游戏全局管理
     public class GameStateModel : AbstractModel
     {
-        // 游戏阶段s
+        public BindableProperty<int> Round { get; } = new(1);
         public BindableProperty<GamePhase> Phase { get; } = new(GamePhase.Stage1);
         // 当前 案件 的id
         public BindableProperty<string> CurrentCaseId { get; } = new(string.Empty);

@@ -231,6 +231,12 @@ public class CasePackManagerWindow : EditorWindow
             }
             _selected.correctIndex = EditorGUILayout.IntSlider("Correct Index", _selected.correctIndex, 0, 2);
 
+            // Audio
+            EditorGUILayout.Space(10);
+            EditorGUILayout.LabelField("Audio", EditorStyles.boldLabel);
+            _selected.audioClip1 = (AudioClip)EditorGUILayout.ObjectField("提交音频", _selected.audioClip1, typeof(AudioClip), false);
+            _selected.audioClip2 = (AudioClip)EditorGUILayout.ObjectField("被点亮音频", _selected.audioClip2, typeof(AudioClip), false);
+
             // Clue Links
             EditorGUILayout.Space(10);
             EditorGUILayout.LabelField("Clue Links", EditorStyles.boldLabel);
