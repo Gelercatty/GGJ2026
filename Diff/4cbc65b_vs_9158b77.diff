@@ -1,0 +1,139 @@
+diff --git a/Assets/Editor/CasePackManagerWindow.cs b/Assets/Editor/CasePackManagerWindow.cs
+index 9c87a51..c14f5fe 100644
+--- a/Assets/Editor/CasePackManagerWindow.cs
++++ b/Assets/Editor/CasePackManagerWindow.cs
+@@ -227,6 +227,13 @@ public class CasePackManagerWindow : EditorWindow
+ 
+             _selected.correctIndex = EditorGUILayout.IntSlider("Correct Index", _selected.correctIndex, 0, 2);
+ 
++            // Clue Links
++            EditorGUILayout.Space(10);
++            EditorGUILayout.LabelField("Clue Links", EditorStyles.boldLabel);
++            _selected.hyperlinkId = EditorGUILayout.TextField("Hyperlink ID", _selected.hyperlinkId);
++            EditorGUILayout.LabelField("Hyperlink Clue Text");
++            _selected.hyperlinkClueText = EditorGUILayout.TextArea(_selected.hyperlinkClueText, GUILayout.MinHeight(60));
++
+             // Validation panel
+             EditorGUILayout.Space(12);
+             DrawValidationPanel(_selected);
+diff --git a/Assets/SO/CasePackSO.cs b/Assets/SO/CasePackSO.cs
+index ae69a51..1117de1 100644
+--- a/Assets/SO/CasePackSO.cs
++++ b/Assets/SO/CasePackSO.cs
+@@ -28,6 +28,14 @@ public class CasePackSO : ScriptableObject
+     [Range(0, 2)]
+     public int correctIndex = 0;
+ 
++    [Header("Clue Links")]
++    [Tooltip("超链接的唯一标识ID")]
++    public string hyperlinkId;
++    
++    [Tooltip("超链接对应的线索文本")]
++    [TextArea(3, 10)]
++    public string hyperlinkClueText;
++    
+     private void OnValidate()
+     {
+         if (prisonShots == null || prisonShots.Length != 3) prisonShots = ResizeTo3(prisonShots);
+@@ -75,6 +83,24 @@ public class CasePackSO : ScriptableObject
+ 
+         return errors;
+     }
++
++    /// <summary>
++    /// 获取超链接对应的线索文本
++    /// </summary>
++    /// <returns>超链接对应的线索文本</returns>
++    public string GetHyperlinkClueText()
++    {
++        return hyperlinkClueText ?? string.Empty;
++    }
++
++    /// <summary>
++    /// 获取超链接ID
++    /// </summary>
++    /// <returns>超链接ID</returns>
++    public string GetHyperlinkId()
++    {
++        return hyperlinkId ?? string.Empty;
++    }
+ }
+ 
+ }
+diff --git a/Assets/Systems.cs b/Assets/Systems.cs
+index 9f265e8..6364514 100644
+--- a/Assets/Systems.cs
++++ b/Assets/Systems.cs
+@@ -19,6 +19,20 @@ namespace GGJ2026
+ 
+         /// <summary>是否已完成加载</summary>
+         bool IsLoaded { get; }
++
++        /// <summary>
++        /// 根据超链接ID在整个系统中查找对应的线索文本
++        /// </summary>
++        /// <param name="linkId">超链接ID</param>
++        /// <returns>对应的线索文本，如果未找到返回空字符串</returns>
++        string GetClueTextByLinkId(string linkId);
++
++        /// <summary>
++        /// 检查系统中是否存在指定的超链接ID
++        /// </summary>
++        /// <param name="linkId">超链接ID</param>
++        /// <returns>是否存在</returns>
++        bool HasLinkId(string linkId);
+     }
+ 
+     public class CaseRepositorySystem : AbstractSystem, ICaseRepositorySystem
+@@ -90,6 +104,51 @@ namespace GGJ2026
+             Debug.LogError($"[CaseRepositorySystem] Case not found: {caseId}");
+             return null;
+         }
++
++        public string GetClueTextByLinkId(string linkId)
++        {
++            if (!IsLoaded || string.IsNullOrEmpty(linkId))
++                return string.Empty;
++
++            var lib = this.GetModel<ICaseLibraryModel>();
++            
++            // 遍历所有案件，查找匹配的linkId
++            foreach (var caseId in lib.CaseIds)
++            {
++                if (lib.TryGet(caseId, out var casePack))
++                {
++                    if (casePack.hyperlinkId == linkId)
++                    {
++                        return casePack.GetHyperlinkClueText();
++                    }
++                }
++            }
++
++            Debug.LogWarning($"[CaseRepositorySystem] LinkId not found: {linkId}");
++            return string.Empty;
++        }
++
++        public bool HasLinkId(string linkId)
++        {
++            if (!IsLoaded || string.IsNullOrEmpty(linkId))
++                return false;
++
++            var lib = this.GetModel<ICaseLibraryModel>();
++            
++            // 遍历所有案件，检查是否存在指定的linkId
++            foreach (var caseId in lib.CaseIds)
++            {
++                if (lib.TryGet(caseId, out var casePack))
++                {
++                    if (casePack.hyperlinkId == linkId)
++                    {
++                        return true;
++                    }
++                }
++            }
++
++            return false;
++        }
+     }
+ 
+ 
