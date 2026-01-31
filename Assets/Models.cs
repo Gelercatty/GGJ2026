@@ -17,7 +17,7 @@ namespace GGJ2026
         // 全局，成功次数
         public BindableProperty<int> SolvedCount { get; } = new(0);
         public BindableProperty<int> FailedCount { get; } = new(0);
-
+        public int HaJiMiRound = 1; // HAJIMI周目数
         protected override void OnInit() { }
     }
 

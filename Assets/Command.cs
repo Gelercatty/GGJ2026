@@ -42,16 +42,7 @@ namespace GGJ2026
         }
     }
     
-    // Stage1InspectCandidateCommand(string caseId)
-    //
-    public class Stage1AddClue2Notes : AbstractCommand
-    {
-        public string clue_add_id;
-        protected override void OnExecute()
-        {
-            
-        }
-    }
+           
     public class Stage1ConfirmCommand: AbstractCommand
     {
         //public GameObject Win_UI;//prefab
@@ -86,6 +77,15 @@ namespace GGJ2026
                 GameApp.Interface.GetModel<UIStage_1_Model>().IsWin=false;
                 GameApp.Interface.GetModel<UIStage_1_Model>().IsLose=true;
             }
+        }
+    }
+
+    public class EnterStage2Command : AbstractCommand
+    {
+        protected override void OnExecute()
+        {
+            this.GetSystem<IGameFlowSystem>().StartNewGame();
+            UnityEngine.Debug.Log("start game command");
         }
     }
     // EnterStage2Command

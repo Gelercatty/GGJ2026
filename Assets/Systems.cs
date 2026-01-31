@@ -154,7 +154,12 @@ namespace GGJ2026
 
     public interface IGameFlowSystem : ISystem
     {
+        // 选择case 刷新phase
         void StartNewGame();
+        // debug 用,直接跳到二阶段
+        void StartStage2Game();
+        // 重置所有游戏状态
+        void ResetGameState();
         // void GameOver_stage1();
         // void GameOver_stage2();
     }
@@ -208,6 +213,19 @@ namespace GGJ2026
             var pack = repo.Get(pickedCaseId);
             stage1.ClueText.Value = pack != null ? pack.stage1ClueText : string.Empty;
             Debug.Log($"[GameFlowSystem] New game started. Candidates={candidateIds.Count}, CurrentCaseId={pickedCaseId}");
+        }
+
+        public void StartStage2Game()
+        {
+            var game = this.GetModel<GameStateModel>();
+            game.Phase.Value = GamePhase.Stage2;
+            // 游戏case保持不变
+                        
+        }
+
+        public void ResetGameState()
+        {
+            
         }
 
         private static void Shuffle<T>(IList<T> list)
