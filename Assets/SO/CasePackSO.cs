@@ -11,6 +11,7 @@ public class CasePackSO : ScriptableObject
     [Header("Identity")]
     public string caseId;
 
+    public string name;
     [Header("Stage 1")]
     public Sprite silhouette;                 // 剪影
     [TextArea(3, 10)]
