@@ -2,6 +2,8 @@ using QFramework;
 using System.Diagnostics;
 using UnityEditor.Tilemaps;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
+
 namespace GGJ2026
 {
     // 加载所有的资源
@@ -26,11 +28,17 @@ namespace GGJ2026
         }
     }
     // BuildStage1CandidatesCommand(int n)
-    public class BuildStage1Candidate : AbstractCommand
+    public class SetStage1SelectedCaseID : AbstractCommand
     {
+        public string CaseId;
+
+        public SetStage1SelectedCaseID(string caseId)
+        {
+            this.CaseId = caseId;
+        }
         protected override void OnExecute()
         {
-            // TODO： 设置第一阶段UI Model
+            GameApp.Interface.GetModel<UIStage_1_Model>().SelectedCaseId = this.CaseId;
         }
     }
     
@@ -41,7 +49,7 @@ namespace GGJ2026
         public string clue_add_id;
         protected override void OnExecute()
         {
-            // TODO: 
+            
         }
     }
     public class Stage1ConfirmCommand: AbstractCommand
@@ -49,6 +57,21 @@ namespace GGJ2026
         protected override void OnExecute()
         {
             // TODO: 判断第一阶段结果
+            // TODO: 
+            string selected = GameApp.Interface.GetModel<UIStage_1_Model>().SelectedCaseId;
+            string currentCase = GameApp.Interface.GetModel<GameStateModel>().CurrentCaseId.Value;
+            Debug.Log("selected:"+selected);
+            Debug.Log("currentCase:"+selected);
+            if (selected == currentCase)
+            {
+                Debug.Log("stage1 win");
+                //todo win logic
+            }
+            else
+            {
+                Debug.Log("stage1c lose");
+                //todo lose logic
+            }
         }
     }
     // EnterStage2Command

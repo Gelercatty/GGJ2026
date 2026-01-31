@@ -27,6 +27,7 @@ namespace GGJ2026
     {   
         public BindableProperty<string> ClueText { get; } = new(string.Empty);
         public List<string> CaseIds = new List<string>();
+        public string SelectedCaseId =  string.Empty;
         protected override void OnInit() { }
     }
     // 阶段二 ui model

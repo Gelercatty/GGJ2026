@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.EventSystems; // 必须引用事件系统
 
-public class UIDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class Stage1UIDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     private Vector2 originalPosition;
-
+    
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();

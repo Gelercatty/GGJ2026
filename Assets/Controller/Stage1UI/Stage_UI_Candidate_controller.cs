@@ -30,9 +30,13 @@ namespace GGJ2026
                 var new_button = Instantiate(Candidate_Button, transform);
                 var pack = repo.Get(id);
                 new_button.GetComponent<Image>().sprite = pack.silhouette;
-
+                new_button.AddComponent<Stage1DropButtonFProperty>().CaseId = id;
+                var prop = new_button.GetComponent<Stage1DropButtonFProperty>();
+                if (prop == null) prop = new_button.AddComponent<Stage1DropButtonFProperty>();
+                prop.CaseId = id;
+ 
                 Buttons.Add(new_button);
-                Debug.Log("addd one");
+                Debug.Log("addd one, CaseId:" + new_button.GetComponent<Stage1DropButtonFProperty>().CaseId);
             }
         }
     }
