@@ -33,3 +33,5 @@ MonoBehaviour:
   - "\u51CC\u66684\u70B9\u51FA\u95E8\u7684\u4EBA\u53EF\u4E0D\u591A\r"
   - "\u5982\u679C\u8BF4\u4E0D\u662F\u9EC4\u79CD\u4EBA\u7684\u8BDD\u5C31\u662F\u7A7F\u7740\u9EC4\u8272\u7684\u8863\u670D"
   - "\u5F88\u660E\u663E\u8FD9\u5BB6\u4F19\u5728\u7EC3\u7403"
+  audioClip1: {fileID: 8300000, guid: bb90c788a54c01e4ea1a9bcf8b5aa3d2, type: 3}
+  audioClip2: {fileID: 8300000, guid: 385cf48851bb804498fcab52695ffd40, type: 3}
