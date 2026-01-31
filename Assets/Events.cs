@@ -33,4 +33,18 @@ namespace GGJ2026
             IsNewCollection = isNewCollection;
         }
     }
+
+
+    public struct ResultChangeEvent
+    {
+    // 是否胜利（或者你也可以只用一个枚举 GameResult 字段）
+    //public readonly bool IsWin;
+    // 是否失败（通常 IsWin 和 IsLose 是互斥的，但这样设计更清晰）
+    //public readonly bool IsLose;
+        public bool isWin ;// =  GameApp.Interface.GetModel<UIStage_1_Model>().IsWin;
+        public bool isLose ;//=  GameApp.Interface.GetModel<UIStage_1_Model>().IsLose; 
+
+
+    }
+
 }

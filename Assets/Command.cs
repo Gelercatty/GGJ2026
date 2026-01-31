@@ -86,6 +86,8 @@ namespace GGJ2026
                 GameApp.Interface.GetModel<UIStage_1_Model>().IsWin=false;
                 GameApp.Interface.GetModel<UIStage_1_Model>().IsLose=true;
             }
+
+            GameApp.Interface.SendEvent<ResultChangeEvent>();
         }
     }
     // EnterStage2Command

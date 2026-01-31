@@ -8,7 +8,7 @@ namespace GGJ2026
     // 游戏全局管理
     public class GameStateModel : AbstractModel
     {
-        // 游戏阶段
+        // 游戏阶段s
         public BindableProperty<GamePhase> Phase { get; } = new(GamePhase.Stage1);
         // 当前 案件 的id
         public BindableProperty<string> CurrentCaseId { get; } = new(string.Empty);
@@ -40,8 +40,11 @@ namespace GGJ2026
         
         // 已收集的线索文本列表
         public List<string> CollectedClueTexts { get; } = new List<string>();
-
-        protected override void OnInit() { }
+        protected override void OnInit()
+        {
+            IsWin = false;
+            IsLose = true;
+        }
     }
     // 阶段二 ui model
     public class UIStage_2_Model : AbstractModel
