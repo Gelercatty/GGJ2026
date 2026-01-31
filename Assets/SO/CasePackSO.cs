@@ -28,6 +28,14 @@ public class CasePackSO : ScriptableObject
     [Range(0, 2)]
     public int correctIndex = 0;
 
+    [Header("Clue Links")]
+    [Tooltip("超链接的唯一标识ID")]
+    public string hyperlinkId;
+    
+    [Tooltip("超链接对应的线索文本")]
+    [TextArea(3, 10)]
+    public string hyperlinkClueText;
+    
     private void OnValidate()
     {
         if (prisonShots == null || prisonShots.Length != 3) prisonShots = ResizeTo3(prisonShots);
@@ -74,6 +82,24 @@ public class CasePackSO : ScriptableObject
         // for (int i = 0; i < 3; i++) if (stage2Dialogues[i] == null) errors.Add($"对话占位 stage2Dialogues[{i}] 未设置");
 
         return errors;
+    }
+
+    /// <summary>
+    /// 获取超链接对应的线索文本
+    /// </summary>
+    /// <returns>超链接对应的线索文本</returns>
+    public string GetHyperlinkClueText()
+    {
+        return hyperlinkClueText ?? string.Empty;
+    }
+
+    /// <summary>
+    /// 获取超链接ID
+    /// </summary>
+    /// <returns>超链接ID</returns>
+    public string GetHyperlinkId()
+    {
+        return hyperlinkId ?? string.Empty;
     }
 }
 
