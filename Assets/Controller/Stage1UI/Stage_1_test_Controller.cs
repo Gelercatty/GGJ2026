@@ -11,11 +11,11 @@ namespace GGJ2026
         public TextMeshProUGUI _text;
         private void OnEnable()
         {
-            this.RegisterEvent<OnRoundCaseSelected>(OnCaseSelected).UnRegisterWhenGameObjectDestroyed(gameObject);
+            this.RegisterEvent<OnRoundCaseSelectedEvent>(OnCaseSelected).UnRegisterWhenGameObjectDestroyed(gameObject);
             _text =  this.GetComponent<TextMeshProUGUI>();
         }
 
-        private void OnCaseSelected(OnRoundCaseSelected e)
+        private void OnCaseSelected(OnRoundCaseSelectedEvent e)
         {
             // 这里你可以：根据 e.CaseId 去拿 CasePackSO，填 UI 或初始化 Stage1Model
    

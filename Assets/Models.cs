@@ -20,17 +20,13 @@ namespace GGJ2026
 
         protected override void OnInit() { }
     }
+
     
     // 第一阶段UI的Model    
     public class UIStage_1_Model : AbstractModel
-    {   // 候选的id
-        public List<string> CandidateCaseIds { get; } = new();
-        // ？
-        // 线索文本
+    {   
         public BindableProperty<string> ClueText { get; } = new(string.Empty);
-        // 玩家正在查看的id
-        public BindableProperty<string> CheckingCandidateCaseId { get; } = new(string.Empty);
-
+        public List<string> CaseIds = new List<string>();
         protected override void OnInit() { }
     }
     // 阶段二 ui model

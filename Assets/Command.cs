@@ -8,7 +8,8 @@ namespace GGJ2026
     {
         protected override void OnExecute()
         {
-            // TODO LOAD EVERY THING
+            var repo = GameApp.Interface.GetSystem<ICaseRepositorySystem>();
+            repo.LoadAll("Content/CaseDatabase");
         }
     }
     /// <summary>开始一局游戏：随机选 Case，写入 GameStateModel</summary>
@@ -16,7 +17,6 @@ namespace GGJ2026
     {
         protected override void OnExecute()
         {
-            // 业务放到 System 里，Command 只负责触发
             this.GetSystem<IGameFlowSystem>().StartNewGame();
         }
     }

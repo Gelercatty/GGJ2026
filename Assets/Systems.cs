@@ -1,83 +1,3 @@
-// using System.Collections.Generic;
-// using QFramework;
-// using UnityEngine;
-//
-// namespace GGJ2026
-// {
-//     public interface ICaseRepositorySystem : ISystem
-//     {
-//         /// <summary>从 Resources 路径加载全部 CasePackSO（默认 Content/Case）</summary>
-//         void LoadAll(string resourcesPath = "Content/Case");
-//
-//         /// <summary>按 caseId 获取 CasePackSO，找不到返回 null</summary>
-//         CasePackSO Get(string caseId);
-//
-//         /// <summary>是否已完成加载</summary>
-//         bool IsLoaded { get; }
-//     }
-//
-//     public class CaseRepositorySystem : AbstractSystem, ICaseRepositorySystem
-//     {
-//         private bool _loaded;
-//         public bool IsLoaded => _loaded;
-//
-//         protected override void OnInit()
-//         {
-//         }
-//
-//         public void LoadAll(string resourcesPath = "Content/Case")
-//         {
-//             var lib = this.GetModel<ICaseLibraryModel>();
-//
-//             var all = Resources.LoadAll<CasePackSO>(resourcesPath);
-//             if (all == null || all.Length == 0)
-//             {
-//                 Debug.LogWarning($"[CaseRepositorySystem] No CasePackSO found at Resources/{resourcesPath}. " +
-//                                  $"请确认路径为 Assets/Resources/{resourcesPath}/ 并放入 CasePackSO 资产。");
-//                 _loaded = true;
-//                 return;
-//             }
-//
-//             // 注册 + 基础校验
-//             var seen = new HashSet<string>();
-//             int okCount = 0;
-//
-//             foreach (var c in all)
-//             {
-//                 if (c == null) continue;
-//
-//                 if (string.IsNullOrWhiteSpace(c.caseId))
-//                 {
-//                     Debug.LogError($"[CaseRepositorySystem] CasePackSO({c.name}) caseId 为空，已跳过。");
-//                     continue;
-//                 }
-//
-//                 if (!seen.Add(c.caseId))
-//                 {
-//                     Debug.LogError($"[CaseRepositorySystem] caseId 重复：{c.caseId}（资产名：{c.name}），后加载的会覆盖前者。");
-//                 }
-//
-//                 lib.Register(c);
-//                 okCount++;
-//             }
-//
-//             _loaded = true;
-//             Debug.Log($"[CaseRepositorySystem] Loaded {okCount} case assets from Resources/{resourcesPath}.");
-//         }
-//
-//         public CasePackSO Get(string caseId)
-//         {
-//             var lib = this.GetModel<ICaseLibraryModel>();
-//             if (lib.TryGet(caseId, out var c))
-//                 return c;
-//
-//             Debug.LogError($"[CaseRepositorySystem] Case not found: {caseId}");
-//             return null;
-//         }
-//     }
-// }
-
-
 
 using System.Collections.Generic;
 using QFramework;
@@ -85,6 +5,7 @@ using UnityEngine;
 
 namespace GGJ2026
 {
+    
     // so 存贮系统
     public interface ICaseRepositorySystem : ISystem {
         /// <summary>
@@ -169,16 +90,19 @@ namespace GGJ2026
             return null;
         }
     }
-    
-    
+
+
     public interface IGameFlowSystem : ISystem
     {
         void StartNewGame();
+        // void GameOver_stage1();
+        // void GameOver_stage2();
     }
 
     public class GameFlowSystem : AbstractSystem, IGameFlowSystem
     {
         protected override void OnInit() { }
+        private const int MAX_CASES = 4;
 
         public void StartNewGame()
         {
@@ -196,20 +120,46 @@ namespace GGJ2026
                 return;
             }
 
-            // 1) 随机选一个 CaseId
-            var idx = Random.Range(0, lib.CaseIds.Count);
-            var pickedCaseId = lib.CaseIds[idx];
+            // 0) 先抽取最多 MAX_CASE 个作为候选池（不重复）
+            var pickCount = Mathf.Min(MAX_CASES, lib.CaseIds.Count);
+
+            // 拷贝一份池子并洗牌，然后取前 pickCount 个
+            var pool = new List<string>(lib.CaseIds);
+            Shuffle(pool);
+
+            var candidateIds = pool.GetRange(0, pickCount);
+
+            // 1) 从候选池中随机选一个作为目标 CaseId
+            var idx = Random.Range(0, candidateIds.Count);
+            var pickedCaseId = candidateIds[idx];
 
             // 2) 写入 GameStateModel
             var game = this.GetModel<GameStateModel>();
             game.Phase.Value = GamePhase.Stage1;
             game.CurrentCaseId.Value = pickedCaseId;
-            
-            // 3) TODO:
-            // 数据读入到stage1的ui中
-            // 4) 发事件：本局案件已选定（UI/其它系统监听）
-            this.SendEvent(new OnRoundCaseSelected { CaseId = pickedCaseId }); 
-            Debug.Log($"[GameFlowSystem] New game started. CurrentCaseId={pickedCaseId}");
+
+            // 3) 写入 Stage1 UI Model（候选 + 线索）
+            var stage1 = this.GetModel<UIStage_1_Model>();
+
+            stage1.CaseIds.Clear();
+            stage1.CaseIds.AddRange(candidateIds);
+
+            // 从 repo 取当前目标的 clue
+            var pack = repo.Get(pickedCaseId);
+            stage1.ClueText.Value = pack != null ? pack.stage1ClueText : string.Empty;
+
+            this.SendEvent(new OnRoundCaseSelectedEvent { CaseId = pickedCaseId });
+
+            Debug.Log($"[GameFlowSystem] New game started. Candidates={candidateIds.Count}, CurrentCaseId={pickedCaseId}");
+        }
+
+        private static void Shuffle<T>(IList<T> list)
+        {
+            for (int i = list.Count - 1; i > 0; i--)
+            {
+                int j = Random.Range(0, i + 1);
+                (list[i], list[j]) = (list[j], list[i]);
+            }
         }
         
     }
