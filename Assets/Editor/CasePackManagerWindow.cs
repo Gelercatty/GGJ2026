@@ -222,9 +222,13 @@ public class CasePackManagerWindow : EditorWindow
             EditorGUILayout.LabelField("Dialogues Placeholder (3)");
             for (int i = 0; i < 3; i++)
             {
-                _selected.stage2Dialogues[i] = EditorGUILayout.ObjectField($"Dialogue[{i}]", _selected.stage2Dialogues[i], typeof(UnityEngine.Object), false);
+                _selected.stage2Dialogues[i] = (DialogueSheetSO)EditorGUILayout.ObjectField(
+                    $"Dialogue[{i}]",
+                    _selected.stage2Dialogues[i],
+                    typeof(DialogueSheetSO),
+                    false
+                );
             }
-
             _selected.correctIndex = EditorGUILayout.IntSlider("Correct Index", _selected.correctIndex, 0, 2);
 
             // Clue Links

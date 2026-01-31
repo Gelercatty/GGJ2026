@@ -15,7 +15,7 @@ MonoBehaviour:
   caseId: Case_0002
   name: Case_0002
   silhouette: {fileID: 21300000, guid: 6358f991c402fb046b53c1fa49a8bfc5, type: 3}
-  stage1ClueText: hachimihachimi
+  stage1ClueText: "hachimihachimi <link=\"id\">\u70B9\u51FB\u8FD9\u91CC</link>"
   prisonShots:
   - {fileID: 0}
   - {fileID: 0}
