@@ -2,7 +2,7 @@ using QFramework;
 namespace GGJ2026
 {
     
-    public class ConterApp : Architecture<ConterApp> 
+    public class GameApp : Architecture<GameApp> 
     {
         // 在这里注册Model,
         protected override void Init()
