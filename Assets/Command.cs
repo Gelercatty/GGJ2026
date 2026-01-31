@@ -54,23 +54,37 @@ namespace GGJ2026
     }
     public class Stage1ConfirmCommand: AbstractCommand
     {
+        //public GameObject Win_UI;//prefab
         protected override void OnExecute()
         {
             // TODO: 判断第一阶段结果
             // TODO: 
+            
             string selected = GameApp.Interface.GetModel<UIStage_1_Model>().SelectedCaseId;
             string currentCase = GameApp.Interface.GetModel<GameStateModel>().CurrentCaseId.Value;
+
             Debug.Log("selected:"+selected);
-            Debug.Log("currentCase:"+selected);
+            Debug.Log("currentCase:"+currentCase);
             if (selected == currentCase)
             {
                 Debug.Log("stage1 win");
                 //todo win logic
+                GameApp.Interface.GetModel<UIStage_1_Model>().IsWin=true;
+                GameApp.Interface.GetModel<UIStage_1_Model>().IsLose=false;
+                //freeze_command
+                //var win_ui = Instantiate(Win_UI,transform);
+                //clear view
+
+                //goto stage2 command
+                
             }
             else
             {
-                Debug.Log("stage1c lose");
+                Debug.Log("stage1 lose");
                 //todo lose logic
+                //got stage1 command
+                GameApp.Interface.GetModel<UIStage_1_Model>().IsWin=false;
+                GameApp.Interface.GetModel<UIStage_1_Model>().IsFalse=true;
             }
         }
     }
