@@ -1,4 +1,4 @@
-using QFramework;
+﻿using QFramework;
 using System.Diagnostics;
 using UnityEditor.Tilemaps;
 using UnityEngine;
@@ -99,4 +99,54 @@ namespace GGJ2026
     // Stage2VerdictCommand
     //
     //     RestartGameCommand
+    
+    /// <summary>处理超链接点击</summary>
+    public class HandleHyperlinkClickCommand : AbstractCommand
+    {
+        public string LinkId;
+
+        public HandleHyperlinkClickCommand(string linkId)
+        {
+            this.LinkId = linkId;
+        }
+        
+        protected override void OnExecute()
+        {
+            var stage1Model = this.GetModel<UIStage_1_Model>();
+            var repo = this.GetSystem<ICaseRepositorySystem>();
+            
+            // 检查是否已经点击过
+            if (stage1Model.ClickedHyperlinkIds.Contains(LinkId))
+            {
+                // 已经点击过，发送事件但标记为非新收集
+                string clueText = repo.GetClueTextByLinkId(LinkId);
+                this.SendEvent(new ClueTextChangedEvent(LinkId, clueText, false));
+                return;
+            }
+            
+            // 检查超链接是否存在
+            if (!repo.HasLinkId(LinkId))
+            {
+                Debug.LogWarning($"超链接不存在: {LinkId}");
+                return;
+            }
+            
+            // 获取对应的线索文本
+            string newClueText = repo.GetClueTextByLinkId(LinkId);
+            if (string.IsNullOrEmpty(newClueText))
+            {
+                Debug.LogWarning($"超链接 {LinkId} 对应的线索文本为空");
+                return;
+            }
+            
+            // 记录点击并收集文本
+            stage1Model.ClickedHyperlinkIds.Add(LinkId);
+            stage1Model.CollectedClueTexts.Add(newClueText);
+            
+            Debug.Log($"成功收集超链接 {LinkId} 的线索文本: {newClueText}");
+            
+            // 发送事件，标记为新收集
+            this.SendEvent(new ClueTextChangedEvent(LinkId, newClueText, true));
+        }
+    }
 }

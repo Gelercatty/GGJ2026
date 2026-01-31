@@ -35,6 +35,12 @@ namespace GGJ2026
         public string WinText = "";
         public string LoseText = "";
 
+        // 已点击的超链接ID集合（用于去重）
+        public HashSet<string> ClickedHyperlinkIds { get; } = new HashSet<string>();
+        
+        // 已收集的线索文本列表
+        public List<string> CollectedClueTexts { get; } = new List<string>();
+
         protected override void OnInit() { }
     }
     // 阶段二 ui model

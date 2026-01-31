@@ -32,7 +32,9 @@ public class CluePanelController : MonoBehaviour, IController,IPointerClickHandl
             TMP_LinkInfo linkInfo = textMeshProUGUI.textInfo.linkInfo[linkIndex];
             string linkId = linkInfo.GetLinkID();
             Debug.Log("点击了链接: " + linkId);
-            // 在这里处理链接点击事件，比如根据linkId执行不同的操作
+            
+            // 发送 Command 处理超链接点击
+            this.SendCommand(new HandleHyperlinkClickCommand(linkId));
         }
     }
 
