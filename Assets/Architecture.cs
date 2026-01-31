@@ -10,9 +10,12 @@ namespace GGJ2026
             // this.RegisterModel<ICounterModel>(new CounterModel());
             
             RegisterModel<ICaseLibraryModel>(new CaseLibraryModel());
-            
+            RegisterModel<GameStateModel>(new GameStateModel());
+            RegisterModel<UIStage_1_Model>(new UIStage_1_Model());
+            RegisterModel<UIStage_2_Model>(new UIStage_2_Model());
+             
             RegisterSystem<ICaseRepositorySystem>(new CaseRepositorySystem());
-
+            RegisterSystem<IGameFlowSystem>(new GameFlowSystem());
         }
     }
 }

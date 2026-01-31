@@ -21,6 +21,10 @@ public class CasePackManagerWindow : EditorWindow
 
     private List<CasePackSO> _cases = new();
     private CasePackSO _selected;
+    
+    private const string DbAssetPath = "Assets/Resources/Content/CaseDatabase.asset";
+    private CaseDatabaseSO _db;
+    private bool _autoSyncDb = true; // 可选：是否在 RefreshList 后自动同步
 
     // 校验缓存
     private readonly Dictionary<CasePackSO, List<string>> _validation = new();
@@ -40,6 +44,7 @@ public class CasePackManagerWindow : EditorWindow
     private void OnEnable()
     {
         _rootFolder = EditorPrefs.GetString(PrefRootFolder, DefaultRootFolder);
+        _db = GetOrCreateDatabase(); 
         RefreshList();
     }
 
@@ -103,11 +108,21 @@ public class CasePackManagerWindow : EditorWindow
             if (GUILayout.Button("Save All", GUILayout.Width(120)))
                 SaveAll();
 
-            GUILayout.FlexibleSpace();
+           
 
             if (GUILayout.Button("Import...", GUILayout.Width(120)))
                 ImportCasesEntry();
+            _autoSyncDb = GUILayout.Toggle(_autoSyncDb, "Auto Sync DB", GUILayout.Width(110));
 
+            if (GUILayout.Button("Sync Database", GUILayout.Width(140)))
+                SyncDatabaseFromRootFolder();
+
+            if (GUILayout.Button("Ping DB", GUILayout.Width(90)))
+            {
+                _db = GetOrCreateDatabase();
+                EditorGUIUtility.PingObject(_db);
+            }
+            GUILayout.FlexibleSpace();
             EditorGUILayout.EndHorizontal();
         }
     }
@@ -544,6 +559,85 @@ public class CasePackManagerWindow : EditorWindow
         Debug.Log($"[CasePackManager] Import placeholder called. Folder: {absoluteFolderPath}\n" +
                   $"你可以在 HandleImportFromFolder() 里接入解析器。");
     }
+    private CaseDatabaseSO GetOrCreateDatabase()
+{
+    var db = AssetDatabase.LoadAssetAtPath<CaseDatabaseSO>(DbAssetPath);
+    if (db != null) return db;
+
+    EnsureFolderExists("Assets/Resources");
+    EnsureFolderExists("Assets/Resources/Content");
+
+    db = ScriptableObject.CreateInstance<CaseDatabaseSO>();
+    AssetDatabase.CreateAsset(db, DbAssetPath);
+    AssetDatabase.SaveAssets();
+    AssetDatabase.Refresh();
+
+    return db;
+}
+
+private void SyncDatabaseFromRootFolder()
+{
+    if (string.IsNullOrWhiteSpace(_rootFolder) || !AssetDatabase.IsValidFolder(_rootFolder))
+    {
+        Debug.LogWarning($"[CasePackManager] RootFolder 无效：{_rootFolder}");
+        return;
+    }
+
+    _db = GetOrCreateDatabase();
+
+    // 只同步 rootFolder 下的 CasePackSO
+    var guids = AssetDatabase.FindAssets("t:CasePackSO", new[] { _rootFolder });
+
+    var found = new List<CasePackSO>();
+    foreach (var g in guids)
+    {
+        var path = AssetDatabase.GUIDToAssetPath(g);
+        var asset = AssetDatabase.LoadAssetAtPath<CasePackSO>(path);
+        if (asset != null) found.Add(asset);
+    }
+
+    // 基础校验：caseId 非空 & 唯一
+    var errors = new List<string>();
+    var map = new Dictionary<string, CasePackSO>();
+
+    foreach (var c in found)
+    {
+        if (string.IsNullOrWhiteSpace(c.caseId))
+        {
+            errors.Add($"caseId 为空：{AssetDatabase.GetAssetPath(c)}");
+            continue;
+        }
+
+        if (map.ContainsKey(c.caseId))
+        {
+            errors.Add(
+                $"caseId 重复：{c.caseId}\n" +
+                $"  A: {AssetDatabase.GetAssetPath(map[c.caseId])}\n" +
+                $"  B: {AssetDatabase.GetAssetPath(c)}"
+            );
+            continue;
+        }
+
+        map[c.caseId] = c;
+    }
+
+    // 写入数据库（排序保证稳定）
+    _db.cases = map.Values.OrderBy(x => x.caseId).ToList();
+
+    EditorUtility.SetDirty(_db);
+    AssetDatabase.SaveAssets();
+    AssetDatabase.Refresh();
+
+    if (errors.Count > 0)
+    {
+        Debug.LogError("[CasePackManager] Sync Database 完成，但有错误：\n" + string.Join("\n", errors));
+    }
+    else
+    {
+        Debug.Log($"[CasePackManager] Sync Database OK：{_db.cases.Count} cases -> {DbAssetPath}");
+    }
+}
+
 }
 }
 #endif

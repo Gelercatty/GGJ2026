@@ -22,22 +22,19 @@ namespace GGJ2026
     }
     
     // 第一阶段UI的Model    
-    public class Stage1Model : AbstractModel
+    public class UIStage_1_Model : AbstractModel
     {   // 候选的id
         public List<string> CandidateCaseIds { get; } = new();
         // ？
-        public BindableProperty<int> CandidatesVersion { get; } = new(0);
         // 线索文本
         public BindableProperty<string> ClueText { get; } = new(string.Empty);
         // 玩家正在查看的id
         public BindableProperty<string> CheckingCandidateCaseId { get; } = new(string.Empty);
-        // 确认时的id 用于校验
-        public BindableProperty<string> ConfirmPickCandidateCaseId { get; } = new(string.Empty);
 
         protected override void OnInit() { }
     }
     // 阶段二 ui model
-    public class Stage2Model : AbstractModel
+    public class UIStage_2_Model : AbstractModel
     {
         // 嫌犯列表
         public List<SuspectRuntime> Suspects { get; } = new();
@@ -69,20 +66,10 @@ namespace GGJ2026
 
         protected override void OnInit() { }
     }
-    // 拖拽过程的model 暂时没啥用
-    public class UIDragModel : AbstractModel 
-    {
-        public BindableProperty<bool> IsDragging { get; } = new(false);
-        public BindableProperty<DragPayloadType> PayloadType { get; } = new(DragPayloadType.None);
-        public BindableProperty<string> PayloadId { get; } = new(string.Empty);
-        public BindableProperty<string> HoverZoneId { get; } = new(string.Empty);
-
-        protected override void OnInit() { }
-    }
     
     
     
-    // 资产模型
+    // Case model
     public interface ICaseLibraryModel : IModel
     {
         IReadOnlyList<string> CaseIds { get; }
