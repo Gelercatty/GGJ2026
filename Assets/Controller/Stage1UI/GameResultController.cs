@@ -18,7 +18,7 @@ namespace GGJ2026
        // public List<GameObject>  Buttons { get; } = new();
         private void OnEnable()
         {
-            this.RegisterEvent<ResultChangeEvent>(OnLoadUI).UnRegisterWhenGameObjectDestroyed(gameObject);
+            this.RegisterEvent<ResultChangeEvent>(OnLoadStage1UI).UnRegisterWhenGameObjectDestroyed(gameObject);
         }
 
         private void OnLoadStage1UI(ResultChangeEvent e)

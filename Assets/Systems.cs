@@ -29,7 +29,7 @@ namespace GGJ2026
 
         /// <summary>
         /// 检查系统中是否存在指定的超链接ID
-        /// </summary>
+        
         /// <param name="linkId">超链接ID</param>
         /// <returns>是否存在</returns>
         bool HasLinkId(string linkId);
@@ -162,6 +162,10 @@ namespace GGJ2026
         void ResetGameState();
         // void GameOver_stage1();
         // void GameOver_stage2();
+
+        void Stage1Loss();
+        void Stage2Loss();
+        void ResolveStage1(string selectedCaseId); 
     }
 
     public class GameFlowSystem : AbstractSystem, IGameFlowSystem
@@ -226,6 +230,34 @@ namespace GGJ2026
         public void ResetGameState()
         {
             
+        }
+
+        public void Stage1Win()
+        {
+            GameApp.Interface.GetModel<GameStateModel>().Phase.Value = GamePhase.Win_stage1;
+        }
+        public void Stage1Loss()
+        {
+            GameApp.Interface.GetModel<GameStateModel>().Phase.Value = GamePhase.GameOver_1;
+        }
+
+        public void Stage2Loss()
+        {
+            GameApp.Interface.GetModel<GameStateModel>().Phase.Value = GamePhase.GameOver_2;
+        }
+
+        public void ResolveStage1(string selectedCaseId)
+        {
+            var game = this.GetModel<GameStateModel>();
+            var current = game.CurrentCaseId.Value;
+
+            if (selectedCaseId == current)
+            {
+                game.Phase.Value = GamePhase.Win_stage1;
+            }
+            
+            else
+            {    game.Phase.Value = GamePhase.GameOver_1;} 
         }
 
         private static void Shuffle<T>(IList<T> list)
