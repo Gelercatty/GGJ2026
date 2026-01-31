@@ -1,6 +1,7 @@
 using QFramework;
+using System.Diagnostics;
 using UnityEditor.Tilemaps;
-
+using UnityEngine;
 namespace GGJ2026
 {
     // 加载所有的资源
@@ -10,6 +11,8 @@ namespace GGJ2026
         {
             var repo = GameApp.Interface.GetSystem<ICaseRepositorySystem>();
             repo.LoadAll("Content/CaseDatabase");
+            UnityEngine.Debug.Log("loaded all");
+            GameApp.Interface.SendEvent<SourceLoadedEvent>();
         }
     }
     /// <summary>开始一局游戏：随机选 Case，写入 GameStateModel</summary>
@@ -18,6 +21,8 @@ namespace GGJ2026
         protected override void OnExecute()
         {
             this.GetSystem<IGameFlowSystem>().StartNewGame();
+            UnityEngine.Debug.Log("start game command");
+            GameApp.Interface.SendEvent<LoadStage1UI>();
         }
     }
     // BuildStage1CandidatesCommand(int n)

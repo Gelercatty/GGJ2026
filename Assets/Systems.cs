@@ -147,9 +147,6 @@ namespace GGJ2026
             // 从 repo 取当前目标的 clue
             var pack = repo.Get(pickedCaseId);
             stage1.ClueText.Value = pack != null ? pack.stage1ClueText : string.Empty;
-
-            this.SendEvent(new OnRoundCaseSelectedEvent { CaseId = pickedCaseId });
-
             Debug.Log($"[GameFlowSystem] New game started. Candidates={candidateIds.Count}, CurrentCaseId={pickedCaseId}");
         }
 
