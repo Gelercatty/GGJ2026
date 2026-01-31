@@ -22,7 +22,7 @@ public class CasePackSO : ScriptableObject
     public Sprite[] prisonShots = new Sprite[3];       // 囚照 x3
 
     [Tooltip("二阶段审问对话占位")]
-    public UnityEngine.Object[] stage2Dialogues = new UnityEngine.Object[3]; // 对话占位 x3
+    public DialogueSheetSO[] stage2Dialogues = new DialogueSheetSO[3]; // 对话占位 x3
 
     [Header("Answer")]
     [Range(0, 2)]
@@ -53,7 +53,6 @@ public class CasePackSO : ScriptableObject
     }
 
     /// <summary>
-    /// 给工具/CI 用的基础校验（对话/线索结构先不深究）
     /// </summary>
     public List<string> ValidateBasic()
     {

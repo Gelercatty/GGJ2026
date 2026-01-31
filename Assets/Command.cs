@@ -84,7 +84,7 @@ namespace GGJ2026
                 //todo lose logic
                 //got stage1 command
                 GameApp.Interface.GetModel<UIStage_1_Model>().IsWin=false;
-                GameApp.Interface.GetModel<UIStage_1_Model>().IsFalse=true;
+                GameApp.Interface.GetModel<UIStage_1_Model>().IsLose=true;
             }
         }
     }

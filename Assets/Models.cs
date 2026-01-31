@@ -29,8 +29,8 @@ namespace GGJ2026
         public List<string> CaseIds = new List<string>();
         public string SelectedCaseId =  string.Empty;
 
-        public BindableProperty<bool> IsWin = false;
-        public BindableProperty<bool> IsLose =false;
+        public bool IsWin = false;
+        public bool IsLose =false;
 
         public string WinText = "";
         public string LoseText = "";
