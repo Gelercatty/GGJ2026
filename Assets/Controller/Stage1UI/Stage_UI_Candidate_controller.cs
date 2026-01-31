@@ -4,6 +4,7 @@ using UnityEngine;
 using QFramework;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEditor.SceneManagement;
 
 namespace GGJ2026
 {
@@ -29,6 +30,7 @@ namespace GGJ2026
                 var new_button = Instantiate(Candidate_Button, transform);
                 var pack = repo.Get(id);
                 new_button.GetComponent<Image>().sprite = pack.silhouette;
+
                 Buttons.Add(new_button);
                 Debug.Log("addd one");
             }

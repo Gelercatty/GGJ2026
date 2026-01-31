@@ -5,9 +5,10 @@ using UnityEngine;
 
 namespace GGJ2026
 {
-    
+
     // so 存贮系统
-    public interface ICaseRepositorySystem : ISystem {
+    public interface ICaseRepositorySystem : ISystem
+    {
         /// <summary>
         /// 从 Resources 加载 CaseDatabase（默认 Content/CaseDatabase）
         /// </summary>
@@ -158,7 +159,7 @@ namespace GGJ2026
                 (list[i], list[j]) = (list[j], list[i]);
             }
         }
-        
+
     }
 
 }
