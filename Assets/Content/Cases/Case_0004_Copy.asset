@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ef184f0417f4c34939cba525d06d2dd, type: 3}
-  m_Name: Case_0002
+  m_Name: Case_0004_Copy
   m_EditorClassIdentifier: 
-  caseId: Case_0002
-  name: Case_0002
-  silhouette: {fileID: 21300000, guid: 6358f991c402fb046b53c1fa49a8bfc5, type: 3}
-  stage1ClueText: "hachimihachimi <link=\"id\">\u70B9\u51FB\u8FD9\u91CC</link>"
+  caseId: Case_0005
+  name: Case_0005
+  silhouette: {fileID: 21300000, guid: b10648d144d353347aabfb63f5643307, type: 3}
+  stage1ClueText: " <link=\"129\">\u70B9\u51FB\u8FD9\u91CC</link>  <link=\"130\">\u70B9\u51FB\u8FD9\u91CC</link>"
   prisonShots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: febd0dbcc59e6b345891fbec9339fccc, type: 3}
+  - {fileID: 21300000, guid: 8c54d143e8d86034fad987c55e5fe5a1, type: 3}
+  - {fileID: 21300000, guid: 9728d7981be6f8c4aa0c813cb5edd1ed, type: 3}
   stage2Dialogues:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   correctIndex: 0
   hyperlinkIds:
-  - 
-  - 
+  - 129
+  - 130
   - 
   hyperlinkClueTexts:
-  - 
-  - 
+  - 129
+  - 130
   - 

@@ -25,5 +25,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   correctIndex: 0
-  hyperlinkId: 
-  hyperlinkClueText: 
+  hyperlinkIds:
+  - 
+  - 
+  - 
+  hyperlinkClueTexts:
+  - 
+  - 
+  - 

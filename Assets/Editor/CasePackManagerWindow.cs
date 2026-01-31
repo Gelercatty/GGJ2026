@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -234,9 +234,15 @@ public class CasePackManagerWindow : EditorWindow
             // Clue Links
             EditorGUILayout.Space(10);
             EditorGUILayout.LabelField("Clue Links", EditorStyles.boldLabel);
-            _selected.hyperlinkId = EditorGUILayout.TextField("Hyperlink ID", _selected.hyperlinkId);
-            EditorGUILayout.LabelField("Hyperlink Clue Text");
-            _selected.hyperlinkClueText = EditorGUILayout.TextArea(_selected.hyperlinkClueText, GUILayout.MinHeight(60));
+            
+            for (int i = 0; i < 3; i++)
+            {
+                EditorGUILayout.Space(5);
+                EditorGUILayout.LabelField($"Hyperlink Pair {i + 1}", EditorStyles.miniBoldLabel);
+                _selected.hyperlinkIds[i] = EditorGUILayout.TextField("Hyperlink ID", _selected.hyperlinkIds[i]);
+                EditorGUILayout.LabelField("Hyperlink Clue Text");
+                _selected.hyperlinkClueTexts[i] = EditorGUILayout.TextArea(_selected.hyperlinkClueTexts[i], GUILayout.MinHeight(40));
+            }
 
             // Validation panel
             EditorGUILayout.Space(12);

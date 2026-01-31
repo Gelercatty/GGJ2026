@@ -117,9 +117,10 @@ namespace GGJ2026
             {
                 if (lib.TryGet(caseId, out var casePack))
                 {
-                    if (casePack.hyperlinkId == linkId)
+                    string clueText = casePack.GetHyperlinkClueText(linkId);
+                    if (!string.IsNullOrEmpty(clueText))
                     {
-                        return casePack.GetHyperlinkClueText();
+                        return clueText;
                     }
                 }
             }
@@ -140,7 +141,7 @@ namespace GGJ2026
             {
                 if (lib.TryGet(caseId, out var casePack))
                 {
-                    if (casePack.hyperlinkId == linkId)
+                    if (casePack.HasHyperlinkId(linkId))
                     {
                         return true;
                     }

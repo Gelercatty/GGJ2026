@@ -29,17 +29,19 @@ public class CasePackSO : ScriptableObject
     public int correctIndex = 0;
 
     [Header("Clue Links")]
-    [Tooltip("超链接的唯一标识ID")]
-    public string hyperlinkId;
+    [Tooltip("超链接的唯一标识ID（最多3个）")]
+    public string[] hyperlinkIds = new string[3];
     
-    [Tooltip("超链接对应的线索文本")]
+    [Tooltip("超链接对应的线索文本（最多3个）")]
     [TextArea(3, 10)]
-    public string hyperlinkClueText;
+    public string[] hyperlinkClueTexts = new string[3];
     
     private void OnValidate()
     {
         if (prisonShots == null || prisonShots.Length != 3) prisonShots = ResizeTo3(prisonShots);
         if (stage2Dialogues == null || stage2Dialogues.Length != 3) stage2Dialogues = ResizeTo3(stage2Dialogues);
+        if (hyperlinkIds == null || hyperlinkIds.Length != 3) hyperlinkIds = ResizeTo3(hyperlinkIds);
+        if (hyperlinkClueTexts == null || hyperlinkClueTexts.Length != 3) hyperlinkClueTexts = ResizeTo3(hyperlinkClueTexts);
 
         correctIndex = Mathf.Clamp(correctIndex, 0, 2);
     }
@@ -84,21 +86,45 @@ public class CasePackSO : ScriptableObject
     }
 
     /// <summary>
-    /// 获取超链接对应的线索文本
+    /// 根据超链接ID获取对应的线索文本
     /// </summary>
-    /// <returns>超链接对应的线索文本</returns>
-    public string GetHyperlinkClueText()
+    /// <param name="linkId">超链接ID</param>
+    /// <returns>对应的线索文本，如果未找到返回空字符串</returns>
+    public string GetHyperlinkClueText(string linkId)
     {
-        return hyperlinkClueText ?? string.Empty;
+        if (hyperlinkIds == null || hyperlinkClueTexts == null || string.IsNullOrEmpty(linkId))
+            return string.Empty;
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (hyperlinkIds[i] == linkId)
+            {
+                return hyperlinkClueTexts[i] ?? string.Empty;
+            }
+        }
+
+        return string.Empty;
     }
 
     /// <summary>
-    /// 获取超链接ID
+    /// 检查是否存在指定的超链接ID
     /// </summary>
-    /// <returns>超链接ID</returns>
-    public string GetHyperlinkId()
+    /// <param name="linkId">超链接ID</param>
+    /// <returns>是否存在</returns>
+    public bool HasHyperlinkId(string linkId)
     {
-        return hyperlinkId ?? string.Empty;
+        if (hyperlinkIds == null || string.IsNullOrEmpty(linkId))
+            return false;
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (hyperlinkIds[i] == linkId)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
 
