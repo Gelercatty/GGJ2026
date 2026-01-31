@@ -25,5 +25,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   correctIndex: 0
-  hyperlinkId: 
-  hyperlinkClueText: 
+  hyperlinkId: id
+  hyperlinkClueText: "\u54C8\u6781\u7C73"
