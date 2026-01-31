@@ -270,5 +270,24 @@ namespace GGJ2026
         }
 
     }
+        public interface IDebugGameStateSystem : ISystem { }
+
+        public class DebugGameStateSystem : AbstractSystem, IDebugGameStateSystem
+        {
+            private GamePhase _last;
+
+            protected override void OnInit()
+            {
+                var game = this.GetModel<GameStateModel>();
+                _last = game.Phase.Value;
+
+                // 立刻打印一次当前状态 + 之后每次变化都打印
+                game.Phase.RegisterWithInitValue(now =>
+                {
+                    Debug.Log($"[DebugGameState] Phase: {_last} -> {now}");
+                    _last = now;
+                });
+            }
+        }
 
 }
