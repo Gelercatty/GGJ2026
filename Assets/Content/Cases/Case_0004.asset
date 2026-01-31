@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ef184f0417f4c34939cba525d06d2dd, type: 3}
-  m_Name: Case_0003
+  m_Name: Case_0004
   m_EditorClassIdentifier: 
-  caseId: Case_0003
-  name: Case_0003
-  silhouette: {fileID: 21300000, guid: f7dd704e5b22ec345836c7701f31efcc, type: 3}
-  stage1ClueText: "\u672B\u5F71\u4EBA"
+  caseId: Case_0004
+  name: Case_0004
+  silhouette: {fileID: 21300000, guid: b10648d144d353347aabfb63f5643307, type: 3}
+  stage1ClueText: 
   prisonShots:
-  - {fileID: 21300000, guid: 304837835dab9fb4e971d39b4e5ceeb6, type: 3}
-  - {fileID: 21300000, guid: 1010052a9d10f7e4fa423ac4ecda08c2, type: 3}
-  - {fileID: 21300000, guid: 11dac0ad3be345549b381c53ea02ea3a, type: 3}
+  - {fileID: 21300000, guid: febd0dbcc59e6b345891fbec9339fccc, type: 3}
+  - {fileID: 21300000, guid: 8c54d143e8d86034fad987c55e5fe5a1, type: 3}
+  - {fileID: 21300000, guid: 9728d7981be6f8c4aa0c813cb5edd1ed, type: 3}
   stage2Dialogues:
   - {fileID: 0}
   - {fileID: 0}
