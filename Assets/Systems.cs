@@ -19,6 +19,20 @@ namespace GGJ2026
 
         /// <summary>是否已完成加载</summary>
         bool IsLoaded { get; }
+
+        /// <summary>
+        /// 根据超链接ID在整个系统中查找对应的线索文本
+        /// </summary>
+        /// <param name="linkId">超链接ID</param>
+        /// <returns>对应的线索文本，如果未找到返回空字符串</returns>
+        string GetClueTextByLinkId(string linkId);
+
+        /// <summary>
+        /// 检查系统中是否存在指定的超链接ID
+        /// </summary>
+        /// <param name="linkId">超链接ID</param>
+        /// <returns>是否存在</returns>
+        bool HasLinkId(string linkId);
     }
 
     public class CaseRepositorySystem : AbstractSystem, ICaseRepositorySystem
@@ -89,6 +103,51 @@ namespace GGJ2026
 
             Debug.LogError($"[CaseRepositorySystem] Case not found: {caseId}");
             return null;
+        }
+
+        public string GetClueTextByLinkId(string linkId)
+        {
+            if (!IsLoaded || string.IsNullOrEmpty(linkId))
+                return string.Empty;
+
+            var lib = this.GetModel<ICaseLibraryModel>();
+            
+            // 遍历所有案件，查找匹配的linkId
+            foreach (var caseId in lib.CaseIds)
+            {
+                if (lib.TryGet(caseId, out var casePack))
+                {
+                    if (casePack.hyperlinkId == linkId)
+                    {
+                        return casePack.GetHyperlinkClueText();
+                    }
+                }
+            }
+
+            Debug.LogWarning($"[CaseRepositorySystem] LinkId not found: {linkId}");
+            return string.Empty;
+        }
+
+        public bool HasLinkId(string linkId)
+        {
+            if (!IsLoaded || string.IsNullOrEmpty(linkId))
+                return false;
+
+            var lib = this.GetModel<ICaseLibraryModel>();
+            
+            // 遍历所有案件，检查是否存在指定的linkId
+            foreach (var caseId in lib.CaseIds)
+            {
+                if (lib.TryGet(caseId, out var casePack))
+                {
+                    if (casePack.hyperlinkId == linkId)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 

@@ -227,6 +227,13 @@ public class CasePackManagerWindow : EditorWindow
 
             _selected.correctIndex = EditorGUILayout.IntSlider("Correct Index", _selected.correctIndex, 0, 2);
 
+            // Clue Links
+            EditorGUILayout.Space(10);
+            EditorGUILayout.LabelField("Clue Links", EditorStyles.boldLabel);
+            _selected.hyperlinkId = EditorGUILayout.TextField("Hyperlink ID", _selected.hyperlinkId);
+            EditorGUILayout.LabelField("Hyperlink Clue Text");
+            _selected.hyperlinkClueText = EditorGUILayout.TextArea(_selected.hyperlinkClueText, GUILayout.MinHeight(60));
+
             // Validation panel
             EditorGUILayout.Space(12);
             DrawValidationPanel(_selected);
