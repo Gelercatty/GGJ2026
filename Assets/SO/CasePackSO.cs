@@ -36,6 +36,11 @@ public class CasePackSO : ScriptableObject
     [TextArea(3, 10)]
     public string[] hyperlinkClueTexts = new string[3];
     
+    [Tooltip("提交音频")]
+    public AudioClip audioClip1;
+    
+    [Tooltip("被点亮音频")]
+    public AudioClip audioClip2;
     private void OnValidate()
     {
         if (prisonShots == null || prisonShots.Length != 3) prisonShots = ResizeTo3(prisonShots);

@@ -7,11 +7,16 @@ namespace GGJ2026
 {
     public class SoundController : MonoBehaviour, IController
     {
-        // Start is called before the first frame update
         public IArchitecture GetArchitecture() => GameApp.Interface;
         public AudioClip clip;
         public AudioSource musicSource;  // 音乐AudioSource
         public AudioSource sfxSource;
+
+        [Header("回合对应的音乐")]
+        public AudioClip musicForSession1;
+        public AudioClip musicForSession2;
+        public AudioClip musicForSession3;
+        public AudioClip musicForSession4;
         public void ChangeAndPlayMusic(AudioClip newClip)
         {
             if (musicSource == null) return;
@@ -65,21 +70,68 @@ namespace GGJ2026
             }
         }
 
-        void start()
+        void Start()
         {
-            musicSource = GetComponents<AudioSource>()[0];
-            sfxSource = GetComponents<AudioSource>()[1];
-
-
-            // 或者通过公共变量在Inspector中手动拖拽指定
+            var audioSources = GetComponents<AudioSource>();
+            if (audioSources.Length >= 2)
+            {
+                musicSource = audioSources[0];
+                sfxSource = audioSources[1];
+            }
         }
+
         private void Awake()
         {
             
         }
+
         private void OnEnable()
         {
-            
+            var gameState = this.GetModel<GameStateModel>();
+            gameState.Round.RegisterWithInitValue(OnRoundChanged)
+                .UnRegisterWhenGameObjectDestroyed(gameObject);
+        }
+
+        private void OnRoundChanged(int round)
+        {
+            AudioClip newClip = null;
+
+/*            switch (round)
+            {
+                case 1:
+                    //newClip = musicForRound1;
+                    break;
+                case 2:
+                    //newClip = musicForRound2;
+                    break;
+                case 3:
+                    //newClip = musicForRound3;
+                    break;
+                default:
+                    newClip = musicFordefault;
+                    break;
+            }*/
+            if(round <= 3)
+            {
+                newClip = musicForSession1;
+            }
+            else if(round <= 6)
+            {
+                newClip = musicForSession2;
+            }
+            else if(round <= 9)
+            {
+                newClip = musicForSession3;
+            }
+            else
+            {
+                newClip = musicForSession4;
+            }
+
+            if (newClip != null && musicSource != null)
+            {
+                ChangeAndPlayMusic(newClip);
+            }
         }
 
     }
