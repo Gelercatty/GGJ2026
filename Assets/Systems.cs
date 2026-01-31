@@ -29,7 +29,7 @@ namespace GGJ2026
 
         /// <summary>
         /// 检查系统中是否存在指定的超链接ID
-        /// </summary>
+        
         /// <param name="linkId">超链接ID</param>
         /// <returns>是否存在</returns>
         bool HasLinkId(string linkId);
@@ -154,9 +154,18 @@ namespace GGJ2026
 
     public interface IGameFlowSystem : ISystem
     {
+        // 选择case 刷新phase
         void StartNewGame();
+        // debug 用,直接跳到二阶段
+        void StartStage2Game();
+        // 重置所有游戏状态
+        void ResetGameState();
         // void GameOver_stage1();
         // void GameOver_stage2();
+
+        void Stage1Loss();
+        void Stage2Loss();
+        void ResolveStage1(string selectedCaseId); 
     }
 
     public class GameFlowSystem : AbstractSystem, IGameFlowSystem
@@ -210,6 +219,47 @@ namespace GGJ2026
             Debug.Log($"[GameFlowSystem] New game started. Candidates={candidateIds.Count}, CurrentCaseId={pickedCaseId}");
         }
 
+        public void StartStage2Game()
+        {
+            var game = this.GetModel<GameStateModel>();
+            game.Phase.Value = GamePhase.Stage2;
+            // 游戏case保持不变
+                        
+        }
+
+        public void ResetGameState()
+        {
+            
+        }
+
+        public void Stage1Win()
+        {
+            GameApp.Interface.GetModel<GameStateModel>().Phase.Value = GamePhase.Win_stage1;
+        }
+        public void Stage1Loss()
+        {
+            GameApp.Interface.GetModel<GameStateModel>().Phase.Value = GamePhase.GameOver_1;
+        }
+
+        public void Stage2Loss()
+        {
+            GameApp.Interface.GetModel<GameStateModel>().Phase.Value = GamePhase.GameOver_2;
+        }
+
+        public void ResolveStage1(string selectedCaseId)
+        {
+            var game = this.GetModel<GameStateModel>();
+            var current = game.CurrentCaseId.Value;
+
+            if (selectedCaseId == current)
+            {
+                game.Phase.Value = GamePhase.Win_stage1;
+            }
+            
+            else
+            {    game.Phase.Value = GamePhase.GameOver_1;} 
+        }
+
         private static void Shuffle<T>(IList<T> list)
         {
             for (int i = list.Count - 1; i > 0; i--)
@@ -220,5 +270,24 @@ namespace GGJ2026
         }
 
     }
+        public interface IDebugGameStateSystem : ISystem { }
+
+        public class DebugGameStateSystem : AbstractSystem, IDebugGameStateSystem
+        {
+            private GamePhase _last;
+
+            protected override void OnInit()
+            {
+                var game = this.GetModel<GameStateModel>();
+                _last = game.Phase.Value;
+
+                // 立刻打印一次当前状态 + 之后每次变化都打印
+                game.Phase.RegisterWithInitValue(now =>
+                {
+                    Debug.Log($"[DebugGameState] Phase: {_last} -> {now}");
+                    _last = now;
+                });
+            }
+        }
 
 }

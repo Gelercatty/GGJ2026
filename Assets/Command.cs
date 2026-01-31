@@ -1,4 +1,4 @@
-using QFramework;
+﻿using QFramework;
 using System.Diagnostics;
 using UnityEditor.Tilemaps;
 using UnityEngine;
@@ -42,50 +42,24 @@ namespace GGJ2026
         }
     }
     
-    // Stage1InspectCandidateCommand(string caseId)
-    //
-    public class Stage1AddClue2Notes : AbstractCommand
-    {
-        public string clue_add_id;
-        protected override void OnExecute()
-        {
-            
-        }
-    }
+           
     public class Stage1ConfirmCommand: AbstractCommand
     {
         //public GameObject Win_UI;//prefab
         protected override void OnExecute()
         {
-            // TODO: 判断第一阶段结果
-            // TODO: 
-            
-            string selected = GameApp.Interface.GetModel<UIStage_1_Model>().SelectedCaseId;
-            string currentCase = GameApp.Interface.GetModel<GameStateModel>().CurrentCaseId.Value;
+            var selected = this.GetModel<UIStage_1_Model>().SelectedCaseId;
+            this.GetSystem<IGameFlowSystem>().ResolveStage1(selected); 
+            this.SendEvent<ResultChangeEvent>();
+        }
+    }
 
-            Debug.Log("selected:"+selected);
-            Debug.Log("currentCase:"+currentCase);
-            if (selected == currentCase)
-            {
-                Debug.Log("stage1 win");
-                //todo win logic
-                GameApp.Interface.GetModel<UIStage_1_Model>().IsWin=true;
-                GameApp.Interface.GetModel<UIStage_1_Model>().IsLose=false;
-                //freeze_command
-                //var win_ui = Instantiate(Win_UI,transform);
-                //clear view
-
-                //goto stage2 command
-                
-            }
-            else
-            {
-                Debug.Log("stage1 lose");
-                //todo lose logic
-                //got stage1 command
-                GameApp.Interface.GetModel<UIStage_1_Model>().IsWin=false;
-                GameApp.Interface.GetModel<UIStage_1_Model>().IsLose=true;
-            }
+    public class EnterStage2Command : AbstractCommand
+    {
+        protected override void OnExecute()
+        {
+            this.GetSystem<IGameFlowSystem>().StartStage2Game();
+            UnityEngine.Debug.Log("start game command");
         }
     }
     // EnterStage2Command
@@ -99,4 +73,54 @@ namespace GGJ2026
     // Stage2VerdictCommand
     //
     //     RestartGameCommand
+    
+    /// <summary>处理超链接点击</summary>
+    public class HandleHyperlinkClickCommand : AbstractCommand
+    {
+        public string LinkId;
+
+        public HandleHyperlinkClickCommand(string linkId)
+        {
+            this.LinkId = linkId;
+        }
+        
+        protected override void OnExecute()
+        {
+            var stage1Model = this.GetModel<UIStage_1_Model>();
+            var repo = this.GetSystem<ICaseRepositorySystem>();
+            
+            // 检查是否已经点击过
+            if (stage1Model.ClickedHyperlinkIds.Contains(LinkId))
+            {
+                // 已经点击过，发送事件但标记为非新收集
+                string clueText = repo.GetClueTextByLinkId(LinkId);
+                this.SendEvent(new ClueTextChangedEvent(LinkId, clueText, false));
+                return;
+            }
+            
+            // 检查超链接是否存在
+            if (!repo.HasLinkId(LinkId))
+            {
+                Debug.LogWarning($"超链接不存在: {LinkId}");
+                return;
+            }
+            
+            // 获取对应的线索文本
+            string newClueText = repo.GetClueTextByLinkId(LinkId);
+            if (string.IsNullOrEmpty(newClueText))
+            {
+                Debug.LogWarning($"超链接 {LinkId} 对应的线索文本为空");
+                return;
+            }
+            
+            // 记录点击并收集文本
+            stage1Model.ClickedHyperlinkIds.Add(LinkId);
+            stage1Model.CollectedClueTexts.Add(newClueText);
+            
+            Debug.Log($"成功收集超链接 {LinkId} 的线索文本: {newClueText}");
+            
+            // 发送事件，标记为新收集
+            this.SendEvent(new ClueTextChangedEvent(LinkId, newClueText, true));
+        }
+    }
 }

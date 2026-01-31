@@ -9,9 +9,10 @@ namespace GGJ2026
     {
         Stage1,
         Stage2,
+        Win_stage1,
         GameOver_1,
         GameOver_2,
-        win
+        Win_stage2
     }
 
     public enum DragPayloadType

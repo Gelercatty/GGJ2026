@@ -14,6 +14,7 @@ namespace GGJ2026
             RegisterModel<UIStage_1_Model>(new UIStage_1_Model());
             RegisterModel<UIStage_2_Model>(new UIStage_2_Model());
              
+            RegisterSystem<DebugGameStateSystem>(new DebugGameStateSystem());
             RegisterSystem<ICaseRepositorySystem>(new CaseRepositorySystem());
             RegisterSystem<IGameFlowSystem>(new GameFlowSystem());
         }
