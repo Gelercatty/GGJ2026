@@ -5,7 +5,7 @@ using QFramework;
 using TMPro;
 using GGJ2026;
 
-public class NotePanelController : MonoBehaviour, IController
+public class cNotePanelController : MonoBehaviour, IController
 {
     public TextMeshProUGUI noteText;
     
