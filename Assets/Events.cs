@@ -14,6 +14,23 @@ namespace GGJ2026
     {
         
     }
+    public struct lossStage2
+    {
+
+    }
+
+    public struct winStage2
+    {
+
+    }
+    public struct DiagnolLoaded
+    {
+        
+    }
+    public struct StartDialogue
+    {
+    
+    }
     public struct SetEveryThingSil
     {
 

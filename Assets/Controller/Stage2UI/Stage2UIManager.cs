@@ -17,7 +17,8 @@ namespace GGJ2026
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
         }
 
-        void reFreshModel(int idx){
+        void reFreshModel(int idx)
+        {
             // TODO: 刷新model显示的内容。
             string CaseId = GameApp.Interface.GetModel<GameStateModel>().CurrentCaseId.Value;
             CasePackSO pack = GameApp.Interface.GetSystem<ICaseRepositorySystem>().Get(CaseId);
@@ -38,6 +39,9 @@ namespace GGJ2026
             UIModel.Dialogue_2 = ResolveDiag(options[2], name);
 
             Debug.Log("Stage2UIModel dialogue0 : " + UIModel.Dialogue_0);
+
+
+            GameApp.Interface.SendEvent(new DiagnolLoaded());
         }
 
         List<Tuple<string, string>> ResolveDiag(DialogueEntry dilogStruct, string name)

@@ -53,6 +53,7 @@ namespace GGJ2026
         public List<Tuple<string, string>> Dialogue_1 = new List<Tuple<string, string>>();
         public List<Tuple<string, string>> Dialogue_2 = new List<Tuple<string, string>>();
 
+        public List<Tuple<string, string>> Show_dialogue = new List<Tuple<string, string>>();
 
         protected override void OnInit() { 
            

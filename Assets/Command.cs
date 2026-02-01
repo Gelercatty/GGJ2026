@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.U2D.IK;
 using Debug = UnityEngine.Debug;
 
 namespace GGJ2026
@@ -42,6 +43,20 @@ namespace GGJ2026
         }
     }
 
+    public class FinnalConfirmCommand : AbstractCommand
+    {
+        protected override void OnExecute()
+        {
+            string caseid = GameApp.Interface.GetModel<GameStateModel>().CurrentCaseId.Value;
+            if (GameApp.Interface.GetModel<UIStage_2_Model>().Selectedidx.Value == GameApp.Interface.GetSystem<ICaseRepositorySystem>().Get(caseid).correctIndex){
+
+                GameApp.Interface.SendEvent<winStage2>();
+            }else
+            {
+                GameApp.Interface.SendEvent<lossStage2>();
+            }
+        }
+    }
     public class SetStage2Selectedidx : AbstractCommand
     {
         public int _selectedidx;
@@ -56,7 +71,32 @@ namespace GGJ2026
             GameApp.Interface.GetModel<UIStage_2_Model>().Selectedidx.Value = this._selectedidx;
         }
     }
-           
+    public class StartDialogueCommand: AbstractCommand
+    {
+        public int _id;
+        public StartDialogueCommand(int id)
+        {
+            _id = id;
+        }
+
+        protected override void OnExecute()
+        {
+            var model = GameApp.Interface.GetModel<UIStage_2_Model>();
+            switch (_id)
+            {
+                case 0:
+                    model.Show_dialogue = model.Dialogue_0;
+                    break;
+                case 1:
+                    model.Show_dialogue = model.Dialogue_1;
+                    break;
+                case 2:
+                    model.Show_dialogue = model.Dialogue_2;
+                    break;
+            }
+            this.SendEvent(new StartDialogue());
+        }
+    }
     public class Stage1ConfirmCommand: AbstractCommand
     {
         //public GameObject Win_UI;//prefab
