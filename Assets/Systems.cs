@@ -213,7 +213,7 @@ namespace GGJ2026
 
             stage1.CaseIds.Clear();
             stage1.CaseIds.AddRange(candidateIds);
-
+            stage1.CollectedClueTexts.Clear();
             // 从 repo 取当前目标的 clue
             var pack = repo.Get(pickedCaseId);
             stage1.ClueText.Value = pack != null ? pack.stage1ClueText : string.Empty;

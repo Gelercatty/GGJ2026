@@ -46,18 +46,7 @@ namespace GGJ2026
         public BindableProperty<int> Selectedidx; // 选中的哪个 
         protected override void OnInit() { }
     }
-    // 笔记
-    public class NotesModel : AbstractModel
-    {
-        public List<NoteEntry> Notes { get; } = new();
-        public BindableProperty<int> NotesVersion { get; } = new(0);
-
-        public BindableProperty<float> ScrollPos { get; } = new(1f);
-
-        protected override void OnInit() { }
-    }
-    
-    
+   
     
     // Case model
     public interface ICaseLibraryModel : IModel
