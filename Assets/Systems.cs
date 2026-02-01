@@ -224,7 +224,6 @@ namespace GGJ2026
         {
             var game = this.GetModel<GameStateModel>();
             game.Phase.Value = GamePhase.Stage2;
-            // 游戏case保持不变
                         
         }
 
@@ -287,6 +286,11 @@ namespace GGJ2026
                 {
                     Debug.Log($"[DebugGameState] Phase: {_last} -> {now}");
                     _last = now;
+                });
+                var stage2ui = this.GetModel<UIStage_2_Model>();
+                stage2ui.Selectedidx.RegisterWithInitValue(id =>
+                {
+                    Debug.Log($"[DebugGameState] current Selected: {id}");
                 });
             }
         }

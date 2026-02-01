@@ -1,16 +1,21 @@
+
 using UnityEngine;
-using UnityEngine.EventSystems; //
+using UnityEngine.EventSystems;
 
 public class Stage2UIDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private RectTransform rectTransform;
+    private RectTransform parentRect;
     private CanvasGroup canvasGroup;
-    private Vector2 originalPosition;
-    
+
+    // 鼠标按下点相对于UI锚点的偏移（在父物体本地坐标系里）
+    private Vector2 pointerOffset;
+
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-        // �������ť�Ӹ� Canvas Group �������קʱ���Ա��͸��
+        parentRect = rectTransform.parent as RectTransform;
+
         canvasGroup = GetComponent<CanvasGroup>();
         if (canvasGroup == null) canvasGroup = gameObject.AddComponent<CanvasGroup>();
     }
@@ -18,23 +23,36 @@ public class Stage2UIDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandle
     public void OnBeginDrag(PointerEventData eventData)
     {
         transform.SetAsLastSibling();
-        originalPosition = rectTransform.anchoredPosition;
-        canvasGroup.alpha = 0.6f; // ��קʱ��͸��
-        canvasGroup.blocksRaycasts = false; // �������ߴ����Լ����������ܼ�⵽�·��ġ�����Ŀ�ꡱ
+
+        canvasGroup.alpha = 0.6f;
+        canvasGroup.blocksRaycasts = false;
+
+        // 把鼠标屏幕坐标转换到父节点的本地坐标
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            parentRect,
+            eventData.position,
+            eventData.pressEventCamera,
+            out var localPointerPos);
+
+        // 记录“当前UI锚点位置 - 鼠标点位置”的偏移
+        pointerOffset = rectTransform.anchoredPosition - localPointerPos;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        // �� UI �������/��ָ�ƶ�
-        rectTransform.anchoredPosition += eventData.delta / transform.lossyScale.x;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            parentRect,
+            eventData.position,
+            eventData.pressEventCamera,
+            out var localPointerPos);
+
+        // 保持鼠标抓取点不变：鼠标位置 + 初始偏移 = UI位置
+        rectTransform.anchoredPosition = localPointerPos + pointerOffset;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        canvasGroup.alpha = 1f; // �ָ���͸��
-        canvasGroup.blocksRaycasts = true; // �ָ����߼��
-
-        // ���û�гɹ��ŵ�Ŀ�����򣬿��Կ�����������ԭλ
-        // rectTransform.anchoredPosition = originalPosition; 
+        canvasGroup.alpha = 1f;
+        canvasGroup.blocksRaycasts = true;
     }
 }

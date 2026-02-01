@@ -43,7 +43,7 @@ namespace GGJ2026
     // 阶段二 ui model
     public class UIStage_2_Model : AbstractModel
     {
-        public BindableProperty<int> Selectedidx; // 选中的哪个 
+        public BindableProperty<int> Selectedidx = new(-1); // 选中的哪个 
         protected override void OnInit() { }
     }
    
