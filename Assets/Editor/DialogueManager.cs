@@ -125,8 +125,8 @@ namespace GGJ2026
                 var entry = new DialogueEntry
                 {
                     prompt = r.prompt.Trim(),
-                    answer = ParseCell(r.answerRaw),
-                    reply = ParseCell(r.replyRaw),
+                    answer = r.answerRaw,
+                    reply = r.replyRaw,
                 };
 
                 asset.entries.Add(entry);

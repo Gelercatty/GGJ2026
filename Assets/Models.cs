@@ -43,18 +43,20 @@ namespace GGJ2026
     // 阶段二 ui model
     public class UIStage_2_Model : AbstractModel
     {
-        public BindableProperty<int> Selectedidx = new(-1); // 选中的哪个 
+        public BindableProperty<int> Selectedidx = new(); // 选中的哪个 
 
+        public string ButtonText_0 = string.Empty;
         public string ButtonText_1 = string.Empty;
         public string ButtonText_2 = string.Empty;
-        public string ButtonText_3 = string.Empty;
 
-        public List<string> Dialogue_1 = new List<string>();
-        public List<string> Dialogue_2 = new List<string>();
-        public List<string> Dialogue_3 = new List<string>();
+        public List<Tuple<string, string>> Dialogue_0 = new List<Tuple<string, string>>();
+        public List<Tuple<string, string>> Dialogue_1 = new List<Tuple<string, string>>();
+        public List<Tuple<string, string>> Dialogue_2 = new List<Tuple<string, string>>();
 
 
-        protected override void OnInit() { }
+        protected override void OnInit() { 
+           
+        }
     }
    
     

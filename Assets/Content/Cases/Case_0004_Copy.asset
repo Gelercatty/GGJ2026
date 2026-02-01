@@ -13,7 +13,12 @@ MonoBehaviour:
   m_Name: Case_0004_Copy
   m_EditorClassIdentifier: 
   caseId: Case_0005
+  ActionName: 
   name: Case_0005
+  prisonerName:
+  - 
+  - 
+  - 
   silhouette: {fileID: 21300000, guid: b10648d144d353347aabfb63f5643307, type: 3}
   stage1ClueText: " <link=\"129\">\u70B9\u51FB\u8FD9\u91CC</link>  <link=\"130\">\u70B9\u51FB\u8FD9\u91CC</link>c5"
   prisonShots:
@@ -35,3 +40,7 @@ MonoBehaviour:
   - 
   audioClip1: {fileID: 0}
   audioClip2: {fileID: 0}
+  endingText:
+  - 
+  - 
+  - 

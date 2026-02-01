@@ -1,11 +1,9 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using QFramework;
 namespace GGJ2026
 {
-    using UnityEngine;
-    using UnityEngine.UI;
-
     public class UISilhouetteToggle : MonoBehaviour
     {
         public bool silhouette;
@@ -22,6 +20,7 @@ namespace GGJ2026
             if (!silhouetteShader) silhouetteShader = Shader.Find("UI/SilhouetteMask");
             _silMat = new Material(silhouetteShader);
             Apply();
+
         }
 
         private void OnValidate() => Apply();

@@ -16,8 +16,8 @@ namespace GGJ2026
     public class DialogueEntry
     {
         public string prompt; // 询问选项（按钮文本）
-        public List<DialogueSegment> answer = new(); // 对应回答（解析后的段）
-        public List<DialogueSegment> reply = new(); // 询问者回应（解析后的段）
+        public string answer; // 对应回答（解析后的段）
+        public string reply;// 询问者回应（解析后的段）
     }
 
     public enum DialogueSegmentType

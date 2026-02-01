@@ -24,8 +24,15 @@ namespace GGJ2026
                     ClearButtons();
                 }
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
-            
-            
+
+   
+            this.RegisterEvent<SetEveryThingSil>(e => {
+                foreach (var button in Buttons) { 
+                    button.GetComponent<UISilhouetteToggle>().SetSilhouette(true);
+                    Debug.Log("try to set sil");
+                }
+            }).UnRegisterWhenGameObjectDestroyed(gameObject);
+           
         }
 
         private void OnEnable()

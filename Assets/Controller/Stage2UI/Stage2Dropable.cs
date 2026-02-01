@@ -1,9 +1,12 @@
 
+using GGJ2026;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
-public class Stage2UIDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+using QFramework;
+public class Stage2UIDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IController
 {
+
+    public IArchitecture GetArchitecture() => GameApp.Interface;
     private RectTransform rectTransform;
     private RectTransform parentRect;
     private CanvasGroup canvasGroup;
@@ -26,7 +29,7 @@ public class Stage2UIDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandle
 
         canvasGroup.alpha = 0.6f;
         canvasGroup.blocksRaycasts = false;
-
+        GameApp.Interface.SendEvent<SetEveryThingSil>();
         // 把鼠标屏幕坐标转换到父节点的本地坐标
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             parentRect,
