@@ -30,7 +30,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aeb0c3ad3ef27f94290d9dbc6a6c91fe, type: 2}
   - {fileID: 11400000, guid: e547d1bb2415f754da8c7fa06abcc0c7, type: 2}
   - {fileID: 11400000, guid: eef328f3c01b8b344a6c9ba04cf44358, type: 2}
-  correctIndex: 0
+  correctIndex: 2
   hyperlinkIds:
   - hjm3_1
   - hjm3_2

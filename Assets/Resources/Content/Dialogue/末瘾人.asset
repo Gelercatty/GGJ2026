@@ -14,23 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entries:
   - prompt: "\u4F60\u624B\u4E0A\u62FF\u7740\u7684\u662F\u4EC0\u4E48\uFF1F"
-    answer:
-    - type: 0
-      value: "\u54E6\u54E6\u65B9\u5757\u5757\uFF0C\u65B9\u76D6\u76D6\uFF0C\u62FF\u62FF\u5757\u5757\u62FF\u62FF\u76D6\u76D6\u5495"
-    reply:
-    - type: 0
-      value: "\u989D\u3002\u3002\u3002"
+    answer: "\u54E6\u54E6\u65B9\u5757\u5757\uFF0C\u65B9\u76D6\u76D6\uFF0C\u62FF\u62FF\u5757\u5757\u62FF\u62FF\u76D6\u76D6\u5495"
+    reply: "\u989D\u3002\u3002\u3002"
   - prompt: "\u597D\u50CF\u5927\u5BB6\u90FD\u5F88\u559C\u6B22\u4F60\u7684\u8FF7\u56E0"
-    answer:
-    - type: 0
-      value: "\u672B\u5F71\u4EBA\u65E0\u5904\u4E0D\u5728\u5495"
-    reply:
-    - type: 0
-      value: "\u8FD9\u4E48\u6709\u5B9E\u529B\uFF1F\uFF01"
+    answer: "\u672B\u5F71\u4EBA\u65E0\u5904\u4E0D\u5728\u5495"
+    reply: ...
   - prompt: "\u8BF7\u652F\u6301\uFF1F"
-    answer:
-    - type: 0
-      value: "\u8BF7\u652F\u6301\u7EC8\u672B\u5730\u5DE5\u4E1A\u5495"
-    reply:
-    - type: 0
-      value: "\u5305\u7684\u5495"
+    answer: "\u8BF7\u652F\u6301\u7EC8\u672B\u5730\u5DE5\u4E1A\u5495"
+    reply: "\u5305\u7684"

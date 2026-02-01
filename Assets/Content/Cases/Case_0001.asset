@@ -29,7 +29,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4af7bfffe4ce9694a8422f0251b1d420, type: 2}
   - {fileID: 11400000, guid: 10ee91dc0a94f7040a6f49953064d182, type: 2}
   - {fileID: 11400000, guid: f27da565155640b46adcdaac198304d7, type: 2}
-  correctIndex: 0
+  correctIndex: 1
   hyperlinkIds:
   - manba1
   - manba2

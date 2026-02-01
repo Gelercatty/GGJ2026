@@ -14,23 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entries:
   - prompt: "\u4E16\u754C\u672B\u65E5\u771F\u7684\u4F1A\u6765\u5417"
-    answer:
-    - type: 0
-      value: "\u672B\u65E5...\u672B\u65E5...\u554A\u54C8\uFF0C\u4E0D\u77E5\u9053\u634F"
-    reply:
-    - type: 0
-      value: "\u989D..."
+    answer: "\u672B\u65E5...\u672B\u65E5...\u554A\u54C8\uFF0C\u4E0D\u77E5\u9053\u634F"
+    reply: "\u989D..."
   - prompt: "\u4F60\u6CA1\u611F\u89C9\u4E0D\u5B89\u5417"
-    answer:
-    - type: 0
-      value: "\u4E0D\u5B89\uFF1F\u4E3A\u4EC0\u4E48\u4F1A\u6709\u5462\uFF1F"
-    reply:
-    - type: 0
-      value: "\u55EF...."
+    answer: "\u4E0D\u5B89\uFF1F\u4E3A\u4EC0\u4E48\u4F1A\u6709\u5462\uFF1F"
+    reply: "\u55EF...."
   - prompt: "\u4F60\u7684\u5934\u4E0A\u4E3A\u4EC0\u4E48\u4F1A\u5192\u70DF"
-    answer:
-    - type: 0
-      value: "\u56E0\u4E3AO--M--G--~"
-    reply:
-    - type: 0
-      value: O--M--G--~
+    answer: "\u56E0\u4E3AO--M--G--~"
+    reply: O--M--G--~

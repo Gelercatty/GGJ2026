@@ -29,7 +29,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1228f80188b7dc147ad4f1a48911c5da, type: 2}
   - {fileID: 11400000, guid: fb1395fd2b64fc643b8f6103ca896420, type: 2}
   - {fileID: 11400000, guid: cbd6a6a4819d4fb4389c803eed0edcca, type: 2}
-  correctIndex: 0
+  correctIndex: 1
   hyperlinkIds:
   - doomer1
   - doomer2

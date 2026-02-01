@@ -14,23 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entries:
   - prompt: "\u4F60\u624B\u4E0A\u62FF\u7740\u7684\u662F\u4EC0\u4E48\uFF1F"
-    answer:
-    - type: 0
-      value: "\u201D\u4F60\u5DF2\u6025\u54ED\u201D"
-    reply:
-    - type: 0
-      value: "\uFF1F"
+    answer: "\u201D\u4F60\u5DF2\u6025\u54ED\u201D"
+    reply: "\uFF1F"
   - prompt: "\u597D\u50CF\u5927\u5BB6\u90FD\u5F88\u559C\u6B22\u4F60\u7684\u8FF7\u56E0"
-    answer:
-    - type: 0
-      value: "\u4F60\u4EA6\u75BE\u82E6"
-    reply:
-    - type: 0
-      value: "\u5443\u5443"
+    answer: "\u4F60\u4EA6\u75BE\u82E6"
+    reply: "\u5443\u5443"
   - prompt: "\u8BF7\u652F\u6301\uFF1F"
-    answer:
-    - type: 0
-      value: "\u652F\u6301\u6025\u54ED"
-    reply:
-    - type: 0
-      value: "\u54C8\uFF1F"
+    answer: "\u652F\u6301\u6025\u54ED"
+    reply: "\u54C8\uFF1F"

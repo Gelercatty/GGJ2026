@@ -24,7 +24,7 @@ namespace GGJ2026
             CasePackSO pack = GameApp.Interface.GetSystem<ICaseRepositorySystem>().Get(CaseId);
             var UIModel = GameApp.Interface.GetModel<UIStage_2_Model>();
             List<DialogueEntry> options = pack.stage2Dialogues[idx].entries;
-
+            print("Debug: " + options);
             //List<DialogueEntry> dialogET_0 = digsheet[0].entries; // 第一个人的三个选项
             //List<DialogueEntry> dialogET_1 = digsheet[1].entries; // 第二个人的三个选项
             //List<DialogueEntry> dialogET_2 = digsheet[2].entries; // 第三个人的三个选项
@@ -59,7 +59,7 @@ namespace GGJ2026
             {
                 res.Add(Tuple.Create(name, dilogStruct.reply));
             }
-
+            Debug.Log("[DEBUG] resolveDiag:" + res);
             return res;
         }
 

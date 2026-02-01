@@ -29,7 +29,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a2d74e9c2446ea849be3d7b48ac774ae, type: 2}
   - {fileID: 11400000, guid: b6e5908e466f24347abffcc7c0d9f005, type: 2}
   - {fileID: 11400000, guid: 0b3a2abd7f6352c4e9b0caa51c6326ea, type: 2}
-  correctIndex: 0
+  correctIndex: 2
   hyperlinkIds:
   - xghg1
   - xghg2
