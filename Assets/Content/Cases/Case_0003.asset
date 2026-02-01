@@ -41,12 +41,6 @@ MonoBehaviour:
   audioClip1: {fileID: 8300000, guid: 24dc11f8225c8254784487f25f5b80b7, type: 3}
   audioClip2: {fileID: 8300000, guid: 385cf48851bb804498fcab52695ffd40, type: 3}
   endingText:
-<<<<<<< HEAD
-  - 
-  - 
-  - 
-=======
   - '/kill @e[type=minecraft:enderman]'
   - "\u9009\u9519\u4E86\uFF0C\u6211\u5DF2\u6025\u54ED"
   - "\u4F60\u662F\u8C01\uFF1F\u8BF7\u652F\u6301\u300A\u767E\u65E5\u6218\u8BB0\u300B\uFF01"
->>>>>>> b66bfe6720a5cf507dc8887b14275c5309a37271
