@@ -172,7 +172,7 @@ namespace GGJ2026
     public class GameFlowSystem : AbstractSystem, IGameFlowSystem
     {
         protected override void OnInit() { }
-        private const int MAX_CASES = 4;
+        private const int MAX_CASES = 3;
 
         public void StartNewGame()
         {
@@ -213,7 +213,7 @@ namespace GGJ2026
 
             stage1.CaseIds.Clear();
             stage1.CaseIds.AddRange(candidateIds);
-
+            stage1.CollectedClueTexts.Clear();
             // 从 repo 取当前目标的 clue
             var pack = repo.Get(pickedCaseId);
             stage1.ClueText.Value = pack != null ? pack.stage1ClueText : string.Empty;
@@ -224,7 +224,6 @@ namespace GGJ2026
         {
             var game = this.GetModel<GameStateModel>();
             game.Phase.Value = GamePhase.Stage2;
-            // 游戏case保持不变
                         
         }
 
@@ -287,6 +286,11 @@ namespace GGJ2026
                 {
                     Debug.Log($"[DebugGameState] Phase: {_last} -> {now}");
                     _last = now;
+                });
+                var stage2ui = this.GetModel<UIStage_2_Model>();
+                stage2ui.Selectedidx.RegisterWithInitValue(id =>
+                {
+                    Debug.Log($"[DebugGameState] current Selected: {id}");
                 });
             }
         }

@@ -2,7 +2,7 @@ using GGJ2026;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DropZoneController : MonoBehaviour, IDropHandler
+public class Stage1ViewPort : MonoBehaviour, IDropHandler
 {
     public void OnDrop(PointerEventData eventData)
     {

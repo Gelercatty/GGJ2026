@@ -41,7 +41,21 @@ namespace GGJ2026
             GameApp.Interface.GetModel<UIStage_1_Model>().SelectedCaseId = this.CaseId;
         }
     }
-    
+
+    public class SetStage2Selectedidx : AbstractCommand
+    {
+        public int _selectedidx;
+
+        public SetStage2Selectedidx(int selectedidx)
+        {
+            this._selectedidx = selectedidx;
+        }
+
+        protected override void OnExecute()
+        {
+            GameApp.Interface.GetModel<UIStage_2_Model>().Selectedidx.Value = this._selectedidx;
+        }
+    }
            
     public class Stage1ConfirmCommand: AbstractCommand
     {
