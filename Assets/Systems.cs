@@ -164,7 +164,9 @@ namespace GGJ2026
         // void GameOver_stage1();
         // void GameOver_stage2();
 
+        void Stage1Win();
         void Stage1Loss();
+        void Stage2Win();
         void Stage2Loss();
         void ResolveStage1(string selectedCaseId); 
     }
@@ -239,6 +241,14 @@ namespace GGJ2026
         public void Stage1Loss()
         {
             GameApp.Interface.GetModel<GameStateModel>().Phase.Value = GamePhase.GameOver_1;
+        }
+
+        public void Stage2Win()
+        {
+            var game = this.GetModel<GameStateModel>();
+            game.Phase.Value = GamePhase.Win_stage2;
+            
+            game.Round.Value++;
         }
 
         public void Stage2Loss()
