@@ -11,7 +11,9 @@ public class CasePackSO : ScriptableObject
     [Header("Identity")]
     public string caseId;
 
+    public string ActionName;
     public string name;
+    public string[] prisonerName= new string[3];
     [Header("Stage 1")]
     public Sprite silhouette;                 // 剪影
     [TextArea(3, 10)]
@@ -41,6 +43,9 @@ public class CasePackSO : ScriptableObject
     
     [Tooltip("被点亮音频")]
     public AudioClip audioClip2;
+
+    [Tooltip("结尾文案")]
+    public string endingText;
     private void OnValidate()
     {
         if (prisonShots == null || prisonShots.Length != 3) prisonShots = ResizeTo3(prisonShots);

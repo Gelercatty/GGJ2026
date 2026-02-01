@@ -203,8 +203,16 @@ public class CasePackManagerWindow : EditorWindow
             EditorGUILayout.LabelField("Stage 1", EditorStyles.boldLabel);
             _selected.silhouette = (Sprite)EditorGUILayout.ObjectField("Silhouette", _selected.silhouette, typeof(Sprite), false);
 
+            _selected.ActionName = EditorGUILayout.TextField("Action Name", _selected.ActionName);
+
             EditorGUILayout.LabelField("Clue Text");
             _selected.stage1ClueText = EditorGUILayout.TextArea(_selected.stage1ClueText, GUILayout.MinHeight(60));
+
+            EditorGUILayout.LabelField("Prisoner Name (3)");
+            for (int i = 0; i < 3; i++)
+            {
+                _selected.prisonerName[i] = EditorGUILayout.TextField($"Prisoner[{i}]", _selected.prisonerName[i]);
+            };
 
             // Stage2
             EditorGUILayout.Space(10);
@@ -231,6 +239,9 @@ public class CasePackManagerWindow : EditorWindow
             }
             _selected.correctIndex = EditorGUILayout.IntSlider("Correct Index", _selected.correctIndex, 0, 2);
 
+            EditorGUILayout.LabelField("Ending Text");
+            _selected.endingText = EditorGUILayout.TextArea(_selected.endingText, GUILayout.MinHeight(60));
+            
             // Audio
             EditorGUILayout.Space(10);
             EditorGUILayout.LabelField("Audio", EditorStyles.boldLabel);
