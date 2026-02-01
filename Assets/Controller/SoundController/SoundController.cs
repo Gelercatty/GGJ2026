@@ -82,6 +82,7 @@ namespace GGJ2026
                 musicSource = audioSources[0];
                 sfxSource = audioSources[1];
             }
+                musicSource.loop = true;
         }
 
         private void Awake()
