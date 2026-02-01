@@ -92,8 +92,9 @@ namespace GGJ2026
         private void OnEnable()
         {
             var gameState = this.GetModel<GameStateModel>();
-            gameState.Round.RegisterWithInitValue(OnRoundChanged)
-                .UnRegisterWhenGameObjectDestroyed(gameObject);
+            gameState.Round.RegisterWithInitValue(OnRoundChanged).UnRegisterWhenGameObjectDestroyed(gameObject);
+            var uiStage2Model = this.GetModel<UIStage_2_Model>();
+            //uiStage2Model.IsLightOn.RegisterWithInitValue(OnLightOn).UnRegisterWhenGameObjectDestroyed(gameObject);
         }
 
         private void OnRoundChanged(int round)
@@ -141,25 +142,25 @@ namespace GGJ2026
         private void OnLightOn()
         {   
              var model = GameApp.Interface.GetModel<UIStage_2_Model>();
-            /*var selectedIndex = model.Selected_idx;
-             GameApp.Interface.GetModel<ICaseLibraryModel>().TryGet(selectedIndex.Value.ToString(), out var casePackSO);
-                if(casePackSO != null)
-                {
-                    ChangeAndPlaySFX(casePackSO.audioClip2);
-                }
-            else
-            {
-                ChangeAndPlaySFX(lightSwitchClip);
-            }*/
+             var repo = GameApp.Interface.GetSystem<ICaseRepositorySystem>();
+             string id = model.Selected_idx.Value.ToString();
+             CasePackSO pack = repo.Get(id);
+             var audioClip = pack.audioClip1;
+             if(audioClip != null)
+             {
+                 ChangeAndPlaySFX(audioClip);
+             }else{
+                 ChangeAndPlaySFX(lightSwitchClip);
+             }
         }
         private void OnDialogueGiven()
         {
             //根据DialogueGraphId播放对应音效
-            //if(GameApp.Interface.GetModel<UIStage_2_Model>().
             var model = GameApp.Interface.GetModel<UIStage_2_Model>();
-             GameApp.Interface.GetModel<ICaseLibraryModel>().TryGet(model.SelectedIndex.Value.ToString(), out var casePackSO);
-                if(casePackSO != null){
-                    ChangeAndPlaySFX(casePackSO.audioClip2);
+            var repo =  GameApp.Interface.GetSystem<ICaseRepositorySystem>();
+           CasePackSO pack = repo.Get(model.Selected_idx.Value.ToString());
+                if(pack != null){
+                    ChangeAndPlaySFX(pack.audioClip2);
                 }
         }
     }
