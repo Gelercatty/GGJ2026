@@ -157,7 +157,7 @@ namespace GGJ2026
             //根据DialogueGraphId播放对应音效
             //if(GameApp.Interface.GetModel<UIStage_2_Model>().
             var model = GameApp.Interface.GetModel<UIStage_2_Model>();
-             GameApp.Interface.GetModel<ICaseLibraryModel>().TryGet(model.SelectedIndex.Value.ToString(), out var casePackSO);
+             GameApp.Interface.GetModel<ICaseLibraryModel>().TryGet(model.Selectedidx.Value.ToString(), out var casePackSO);
                 if(casePackSO != null){
                     ChangeAndPlaySFX(casePackSO.audioClip2);
                 }
