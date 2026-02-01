@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e850939679ca4f35b4814cf4a05136c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  silhouette: 0
+  silhouette: 1
   silhouetteShader: {fileID: 4800000, guid: 97bd03a8047d4fb4c9f461a8bf963dfc, type: 3}
 --- !u!114 &1013772314043118049
 MonoBehaviour:

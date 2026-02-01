@@ -172,7 +172,7 @@ namespace GGJ2026
     public class GameFlowSystem : AbstractSystem, IGameFlowSystem
     {
         protected override void OnInit() { }
-        private const int MAX_CASES = 4;
+        private const int MAX_CASES = 3;
 
         public void StartNewGame()
         {

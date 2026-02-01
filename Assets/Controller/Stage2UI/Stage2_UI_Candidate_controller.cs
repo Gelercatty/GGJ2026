@@ -51,7 +51,6 @@ namespace GGJ2026
                 var toggle = newButton.GetComponent<UISilhouetteToggle>();
                 toggle.silhouette = true;
                 newButton.AddComponent<Stage2DropButtonFProperty>().idx = i;
-                this.GetModel<UIStage_2_Model>().IsShown[i] = false;
                 Buttons.Add(newButton);
             }
         }

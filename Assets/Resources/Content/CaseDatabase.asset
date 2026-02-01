@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d132e71d3845bc90d12e77e671e3ca, type: 3}
   m_Name: CaseDatabase
   m_EditorClassIdentifier: 
-  cases: []
+  cases:
+  - {fileID: 11400000, guid: 551d8a987efd70f4aaeb341443b5e238, type: 2}
+  - {fileID: 11400000, guid: 0dfe8de79900d23418f863c7f335d7b4, type: 2}
+  - {fileID: 11400000, guid: 736b7757abc3fb748baf08384b55c80f, type: 2}
+  - {fileID: 11400000, guid: 5f68ad5d67b6fe746a5916c0bad7f96d, type: 2}

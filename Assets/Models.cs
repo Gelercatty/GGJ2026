@@ -43,11 +43,7 @@ namespace GGJ2026
     // 阶段二 ui model
     public class UIStage_2_Model : AbstractModel
     {
-        // 嫌犯列表
-       
-        public List<bool> IsShown = new List<bool>();
-
-        public BindableProperty<int> Selected_idx; // 选中的那个角色的idx 
+        public BindableProperty<int> Selected_idx; // 选中的哪个 
         protected override void OnInit() { }
     }
     // 笔记
