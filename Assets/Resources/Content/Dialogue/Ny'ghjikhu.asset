@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dae884b610234532bad9f46133c0ba7c, type: 3}
+  m_Name: Ny'ghjikhu
+  m_EditorClassIdentifier: 
+  entries:
+  - prompt: "\u4F60\u624B\u4E0A\u62FF\u7740\u7684\u662F\u4EC0\u4E48\uFF1F"
+    answer:
+    - type: 0
+      value: "\u201D\u4F60\u5DF2\u6025\u54ED\u201D"
+    reply:
+    - type: 0
+      value: "\uFF1F"
+  - prompt: "\u597D\u50CF\u5927\u5BB6\u90FD\u5F88\u559C\u6B22\u4F60\u7684\u8FF7\u56E0"
+    answer:
+    - type: 0
+      value: "\u4F60\u4EA6\u75BE\u82E6"
+    reply:
+    - type: 0
+      value: "\u5443\u5443"
+  - prompt: "\u8BF7\u652F\u6301\uFF1F"
+    answer:
+    - type: 0
+      value: "\u652F\u6301\u6025\u54ED"
+    reply:
+    - type: 0
+      value: "\u54C8\uFF1F"
