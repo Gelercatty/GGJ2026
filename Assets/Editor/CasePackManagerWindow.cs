@@ -240,7 +240,10 @@ public class CasePackManagerWindow : EditorWindow
             _selected.correctIndex = EditorGUILayout.IntSlider("Correct Index", _selected.correctIndex, 0, 2);
 
             EditorGUILayout.LabelField("Ending Text");
-            _selected.endingText = EditorGUILayout.TextArea(_selected.endingText, GUILayout.MinHeight(60));
+            for (int i = 0; i < 3; i++)
+            {
+                _selected.endingText[i] = EditorGUILayout.TextArea(_selected.endingText[i], GUILayout.MinHeight(60));
+            }
             
             // Audio
             EditorGUILayout.Space(10);
@@ -544,6 +547,9 @@ public class CasePackManagerWindow : EditorWindow
 
         if (c.stage2Dialogues == null || c.stage2Dialogues.Length != 3)
             c.stage2Dialogues = ResizeTo3(c.stage2Dialogues);
+
+        if (c.endingText == null || c.endingText.Length != 3)
+            c.endingText = ResizeTo3(c.endingText);
 
         static T[] ResizeTo3<T>(T[] src)
         {
