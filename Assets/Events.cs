@@ -1,4 +1,4 @@
-using QFramework;
+﻿﻿﻿using QFramework;
 
 namespace GGJ2026
 {
@@ -14,7 +14,27 @@ namespace GGJ2026
     {
         
     }
+    public struct lossStage2
+    {
 
+    }
+
+    public struct winStage2
+    {
+
+    }
+    public struct DiagnolLoaded
+    {
+        
+    }
+    public struct StartDialogue
+    {
+    
+    }
+    public struct SetEveryThingSil
+    {
+
+    }
     public struct EntryStage2Event
     {
         
@@ -54,6 +74,51 @@ namespace GGJ2026
         public bool isLose ;//=  GameApp.Interface.GetModel<UIStage_1_Model>().IsLose; 
 
 
+    }
+
+    // 对话系统事件
+    public struct OnLightedEvent
+    {
+        // 点亮事件，激活对话按钮
+    }
+    
+    public struct NextTextEvent
+    {
+        // 显示下一句文本
+    }
+    
+    public struct DialogueOptionSelectedEvent
+    {
+        public int OptionIndex;
+        
+        public DialogueOptionSelectedEvent(int optionIndex)
+        {
+            OptionIndex = optionIndex;
+        }
+    }
+    
+    public struct DialogueStartedEvent
+    {
+        public int SuspectIndex;
+        public int OptionIndex;
+        
+        public DialogueStartedEvent(int suspectIndex, int optionIndex)
+        {
+            SuspectIndex = suspectIndex;
+            OptionIndex = optionIndex;
+        }
+    }
+    
+    public struct DialogueFinishedEvent
+    {
+        public int SuspectIndex;
+        public int OptionIndex;
+        
+        public DialogueFinishedEvent(int suspectIndex, int optionIndex)
+        {
+            SuspectIndex = suspectIndex;
+            OptionIndex = optionIndex;
+        }
     }
 
 }
