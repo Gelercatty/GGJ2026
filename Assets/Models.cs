@@ -29,12 +29,7 @@ namespace GGJ2026
         public List<string> CaseIds = new List<string>();
         public string SelectedCaseId =  string.Empty;
 
-        public bool IsWin = false;
-        public bool IsLose =false;
-
-        public string WinText = "";
-        public string LoseText = "";
-
+        
         // 已点击的超链接ID集合（用于去重）
         public HashSet<string> ClickedHyperlinkIds { get; } = new HashSet<string>();
         
@@ -42,31 +37,17 @@ namespace GGJ2026
         public List<string> CollectedClueTexts { get; } = new List<string>();
         protected override void OnInit()
         {
-            IsWin = false;
-            IsLose = true;
+       
         }
     }
     // 阶段二 ui model
     public class UIStage_2_Model : AbstractModel
     {
         // 嫌犯列表
-        public List<SuspectRuntime> Suspects { get; } = new();
-        public BindableProperty<int> SuspectsVersion { get; } = new(0);
-        
-        
-        public BindableProperty<int> CorrectIndex { get; } = new(-1);
-        public BindableProperty<int> SelectedIndex { get; } = new(-1);
-        public BindableProperty<bool> LightOn { get; } = new(false);
+       
+        public List<bool> IsShown = new List<bool>();
 
-        public BindableProperty<string> CurrentDialogueGraphId { get; } = new(string.Empty);
-        public BindableProperty<string> CurrentNodeId { get; } = new(string.Empty);
-
-        public List<DialogueLine> DialogueRecord { get; } = new();
-        public BindableProperty<int> DialogueRecordVersion { get; } = new(0);
-
-        public List<DialogueOption> CurrentOptions { get; } = new();
-        public BindableProperty<int> OptionsVersion { get; } = new(0);
-
+        public BindableProperty<int> Selected_idx; // 选中的那个角色的idx 
         protected override void OnInit() { }
     }
     // 笔记

@@ -60,6 +60,8 @@ namespace GGJ2026
         {
             this.GetSystem<IGameFlowSystem>().StartStage2Game();
             UnityEngine.Debug.Log("start game command");
+            this.SendEvent<LoadStage2UI>();
+            this.SendEvent<EntryStage2Event>();
         }
     }
     // EnterStage2Command

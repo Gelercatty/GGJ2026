@@ -1,7 +1,7 @@
 using UnityEngine;
-using UnityEngine.EventSystems; // ±ØÐëÒýÓÃÊÂ¼þÏµÍ³
+using UnityEngine.EventSystems; //
 
-public class Stage1UIDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class Stage2UIDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
@@ -10,7 +10,7 @@ public class Stage1UIDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandle
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-        // ½¨Òé¸ø°´Å¥¼Ó¸ö Canvas Group ×é¼þ£¬ÍÏ×§Ê±¿ÉÒÔ±ä°ëÍ¸Ã÷
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¥ï¿½Ó¸ï¿½ Canvas Group ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×§Ê±ï¿½ï¿½ï¿½Ô±ï¿½ï¿½Í¸ï¿½ï¿½
         canvasGroup = GetComponent<CanvasGroup>();
         if (canvasGroup == null) canvasGroup = gameObject.AddComponent<CanvasGroup>();
     }
@@ -19,22 +19,22 @@ public class Stage1UIDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandle
     {
         transform.SetAsLastSibling();
         originalPosition = rectTransform.anchoredPosition;
-        canvasGroup.alpha = 0.6f; // ÍÏ×§Ê±±äÍ¸Ã÷
-        canvasGroup.blocksRaycasts = false; // ÔÊÐíÉäÏß´©¹ý×Ô¼º£¬ÕâÑù²ÅÄÜ¼ì²âµ½ÏÂ·½µÄ¡°·ÅÖÃÄ¿±ê¡±
+        canvasGroup.alpha = 0.6f; // ï¿½ï¿½×§Ê±ï¿½ï¿½Í¸ï¿½ï¿½
+        canvasGroup.blocksRaycasts = false; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü¼ï¿½âµ½ï¿½Â·ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ê¡±
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        // ÈÃ UI ¸úËæÊó±ê/ÊÖÖ¸ÒÆ¶¯
+        // ï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½Ö¸ï¿½Æ¶ï¿½
         rectTransform.anchoredPosition += eventData.delta / transform.lossyScale.x;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        canvasGroup.alpha = 1f; // »Ö¸´²»Í¸Ã÷
-        canvasGroup.blocksRaycasts = true; // »Ö¸´ÉäÏß¼ì²â
+        canvasGroup.alpha = 1f; // ï¿½Ö¸ï¿½ï¿½ï¿½Í¸ï¿½ï¿½
+        canvasGroup.blocksRaycasts = true; // ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ß¼ï¿½ï¿½
 
-        // Èç¹ûÃ»ÓÐ³É¹¦·Åµ½Ä¿±êÇøÓò£¬¿ÉÒÔ¿¼ÂÇÈÃËüµ¯»ØÔ­Î»
+        // ï¿½ï¿½ï¿½Ã»ï¿½Ð³É¹ï¿½ï¿½Åµï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ò£¬¿ï¿½ï¿½Ô¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô­Î»
         // rectTransform.anchoredPosition = originalPosition; 
     }
 }

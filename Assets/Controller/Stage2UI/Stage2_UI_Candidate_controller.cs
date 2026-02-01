@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using QFramework;
 using UnityEngine;
@@ -14,43 +15,44 @@ namespace GGJ2026
 
         private void Awake()
         {
-            // 监听阶段变化：只要不在 Stage1，就清理按钮
+            // 监听阶段变化：只要不在 Stage2，就清理按钮
             var game = GameApp.Interface.GetModel<GameStateModel>();
             game.Phase.RegisterWithInitValue(phase =>
             {
-                if (phase != GamePhase.Stage1)
+                if (phase != GamePhase.Stage2)
                 {
                     ClearButtons();
                 }
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
+            
+            
         }
 
-
-        private void OnLoadStage1UI(LoadStage1UI e)
+        private void OnEnable()
         {
-            Debug.Log("[Stage_UI] init ui");
+            this.RegisterEvent<LoadStage2UI>(OnLoadStage2UI).UnRegisterWhenGameObjectDestroyed(gameObject);
+        }
 
-            // ✅ 双保险：生成前先清掉旧的
+        private void OnLoadStage2UI(LoadStage2UI e)
+        {
+            Debug.Log("[Stage2_UI] init ui");
+
             ClearButtons();
 
-            var mod = GameApp.Interface.GetModel<UIStage_1_Model>();
             var repo = GameApp.Interface.GetSystem<ICaseRepositorySystem>();
-
-            for (int i = 0; i < mod.CaseIds.Count; i++)
+            string id = GameApp.Interface.GetModel<GameStateModel>().CurrentCaseId.Value;
+            CasePackSO pack = repo.Get(id);
+            for (int i = 0; i < 3; i++)
             {
-                var id = mod.CaseIds[i];
 
                 var newButton = Instantiate(Candidate_Button, transform);
 
-                var pack = repo.Get(id);
-                newButton.GetComponent<Image>().sprite = pack.silhouette;
-
-                var prop = newButton.GetComponent<Stage1DropButtonFProperty>();
-                if (prop == null) prop = newButton.AddComponent<Stage1DropButtonFProperty>();
-                prop.CaseId = id;
-
+                newButton.GetComponent<Image>().sprite = pack.prisonShots[i];
+                var toggle = newButton.GetComponent<UISilhouetteToggle>();
+                toggle.silhouette = true;
+                newButton.AddComponent<Stage2DropButtonFProperty>().idx = i;
+                this.GetModel<UIStage_2_Model>().IsShown[i] = false;
                 Buttons.Add(newButton);
-                Debug.Log("[Stage_UI] add one, CaseId: " + prop.CaseId);
             }
         }
 
@@ -65,7 +67,7 @@ namespace GGJ2026
             }
             Buttons.Clear();
 
-            Debug.Log("[Stage_UI] cleared candidate buttons");
+            Debug.Log("[Stage2_UI] cleared candidate buttons");
         }
     }
 }

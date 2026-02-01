@@ -10,6 +10,15 @@ namespace GGJ2026
     {
         
     }
+    public struct LoadStage2UI
+    {
+        
+    }
+
+    public struct EntryStage2Event
+    {
+        
+    }
     public struct OnRoundCaseSelectedEvent
     {
         public string CaseId;
