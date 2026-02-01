@@ -45,13 +45,14 @@ public class CasePackSO : ScriptableObject
     public AudioClip audioClip2;
 
     [Tooltip("结尾文案")]
-    public string endingText;
+    public string[] endingText=new string[3];
     private void OnValidate()
     {
         if (prisonShots == null || prisonShots.Length != 3) prisonShots = ResizeTo3(prisonShots);
         if (stage2Dialogues == null || stage2Dialogues.Length != 3) stage2Dialogues = ResizeTo3(stage2Dialogues);
         if (hyperlinkIds == null || hyperlinkIds.Length != 3) hyperlinkIds = ResizeTo3(hyperlinkIds);
         if (hyperlinkClueTexts == null || hyperlinkClueTexts.Length != 3) hyperlinkClueTexts = ResizeTo3(hyperlinkClueTexts);
+        if (endingText == null || endingText.Length != 3) endingText = ResizeTo3(endingText);
 
         correctIndex = Mathf.Clamp(correctIndex, 0, 2);
     }
