@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using GGJ2026;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,7 @@ public class splashscreen : MonoBehaviour
     void Start()
     {
         //splashImage = GetComponent<GameObject>("");
+        
     }
 
     void Update()
