@@ -8,7 +8,7 @@ namespace GGJ2026
     public class SoundController : MonoBehaviour, IController
     {
         public IArchitecture GetArchitecture() => GameApp.Interface;
-        public AudioClip clip;
+        //public AudioClip clip;
         public AudioSource musicSource;  // 音乐AudioSource
         public AudioSource sfxSource;
 
@@ -17,6 +17,10 @@ namespace GGJ2026
         public AudioClip musicForSession2;
         public AudioClip musicForSession3;
         public AudioClip musicForSession4;
+
+        [Header("音效")]
+        public AudioClip lightSwitchClip;
+
         public void ChangeAndPlayMusic(AudioClip newClip)
         {
             if (musicSource == null) return;
@@ -111,21 +115,21 @@ namespace GGJ2026
                     newClip = musicFordefault;
                     break;
             }*/
-            if(round <= 3)
+            if(round <= 2)
             {
                 newClip = musicForSession1;
             }
-            else if(round <= 6)
+            else if(round <= 3)
             {
                 newClip = musicForSession2;
             }
-            else if(round <= 9)
+            else if(round <= 5)
             {
                 newClip = musicForSession3;
             }
             else
             {
-                newClip = musicForSession4;
+                newClip = musicForSession1;
             }
 
             if (newClip != null && musicSource != null)
@@ -134,5 +138,29 @@ namespace GGJ2026
             }
         }
 
+        private void OnLightOn()
+        {   
+             var model = GameApp.Interface.GetModel<UIStage_2_Model>();
+            /*var selectedIndex = model.Selected_idx;
+             GameApp.Interface.GetModel<ICaseLibraryModel>().TryGet(selectedIndex.Value.ToString(), out var casePackSO);
+                if(casePackSO != null)
+                {
+                    ChangeAndPlaySFX(casePackSO.audioClip2);
+                }
+            else
+            {
+                ChangeAndPlaySFX(lightSwitchClip);
+            }*/
+        }
+        private void OnDialogueGiven()
+        {
+            //根据DialogueGraphId播放对应音效
+            //if(GameApp.Interface.GetModel<UIStage_2_Model>().
+            var model = GameApp.Interface.GetModel<UIStage_2_Model>();
+             GameApp.Interface.GetModel<ICaseLibraryModel>().TryGet(model.SelectedIndex.Value.ToString(), out var casePackSO);
+                if(casePackSO != null){
+                    ChangeAndPlaySFX(casePackSO.audioClip2);
+                }
+        }
     }
 }
