@@ -143,7 +143,7 @@ namespace GGJ2026
         {   
              var model = GameApp.Interface.GetModel<UIStage_2_Model>();
              var repo = GameApp.Interface.GetSystem<ICaseRepositorySystem>();
-             string id = model.Selected_idx.Value.ToString();
+             string id = model.Selectedidx.Value.ToString();
              CasePackSO pack = repo.Get(id);
              var audioClip = pack.audioClip1;
              if(audioClip != null)
@@ -158,7 +158,7 @@ namespace GGJ2026
             //根据DialogueGraphId播放对应音效
             var model = GameApp.Interface.GetModel<UIStage_2_Model>();
             var repo =  GameApp.Interface.GetSystem<ICaseRepositorySystem>();
-           CasePackSO pack = repo.Get(model.Selected_idx.Value.ToString());
+           CasePackSO pack = repo.Get(model.Selectedidx.Value.ToString());
                 if(pack != null){
                     ChangeAndPlaySFX(pack.audioClip2);
                 }
