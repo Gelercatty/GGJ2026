@@ -26,6 +26,8 @@ namespace GGJ2026
             if (musicSource == null) return;
 
             // 停止当前播放
+            if(musicSource.clip == newClip) return;
+
             musicSource.Stop();
 
             // 更换Clip
@@ -82,6 +84,7 @@ namespace GGJ2026
                 musicSource = audioSources[0];
                 sfxSource = audioSources[1];
             }
+                musicSource.loop = true;
         }
 
         private void Awake()
@@ -92,45 +95,37 @@ namespace GGJ2026
         private void OnEnable()
         {
             var gameState = this.GetModel<GameStateModel>();
-            gameState.Round.RegisterWithInitValue(OnRoundChanged).UnRegisterWhenGameObjectDestroyed(gameObject);
+            gameState.Phase.RegisterWithInitValue(OnRoundChanged).UnRegisterWhenGameObjectDestroyed(gameObject);
             var uiStage2Model = this.GetModel<UIStage_2_Model>();
             //uiStage2Model.IsLightOn.RegisterWithInitValue(OnLightOn).UnRegisterWhenGameObjectDestroyed(gameObject);
+            //uiStage2Model.DialogueGiven.RegisterWithInitValue(OnDialogueGiven).UnRegisterWhenGameObjectDestroyed(gameObject);
         }
 
-        private void OnRoundChanged(int round)
+        private void OnRoundChanged(GamePhase phase)
         {
             AudioClip newClip = null;
 
-/*            switch (round)
+            if(phase == GamePhase.Win_stage2)
             {
-                case 1:
-                    //newClip = musicForRound1;
-                    break;
-                case 2:
-                    //newClip = musicForRound2;
-                    break;
-                case 3:
-                    //newClip = musicForRound3;
-                    break;
-                default:
-                    newClip = musicFordefault;
-                    break;
-            }*/
-            if(round <= 2)
+                GameApp.Interface.GetModel<GameStateModel>().Round.Value++;
+            }
+            if(phase == GamePhase.GameOver_2 && GameApp.Interface.GetModel<GameStateModel>().Round.Value <= 2 )
+            {
+                GameApp.Interface.GetModel<GameStateModel>().Round.Value = 0;
+            }
+            var Round = GameApp.Interface.GetModel<GameStateModel>().Round.Value;
+
+            if(Round <= 3)
             {
                 newClip = musicForSession1;
             }
-            else if(round <= 3)
+            else if(Round <= 5)
             {
                 newClip = musicForSession2;
             }
-            else if(round <= 5)
-            {
-                newClip = musicForSession3;
-            }
             else
             {
-                newClip = musicForSession1;
+                newClip = musicForSession3;
             }
 
             if (newClip != null && musicSource != null)

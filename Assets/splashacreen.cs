@@ -1,70 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
-//using System.Runtime.InteropServices.Swift;
+using GGJ2026;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class splashacreen : MonoBehaviour
+public class splashscreen : MonoBehaviour
 {
-    public Image image2;
-    public Button closeButton;
+
+    public GameObject splashImage;
+     public GameObject splashImage1;
+      public GameObject splashImage2;
     
     private float timer = 0f;
-    private const float DISPLAY_TIME = 30f;
-    private bool isDisplayed = false;
-
+    private const float DISABLE_TIME = 3f;
+    private const float DISABLE_TIME1 = 0.5f;
+    private const float DISABLE_TIME2 = 1.5f;
+    //private bool isDisabled = false;
+    
     void Start()
     {
-        if (image2 != null)
-        {
-            image2.gameObject.SetActive(false);
-        }
+        //splashImage = GetComponent<GameObject>("");
         
-        if (closeButton != null)
-        {
-            closeButton.onClick.AddListener(OnClickClose);
-            closeButton.gameObject.SetActive(false);
-        }
     }
 
     void Update()
     {
-        if (!isDisplayed)
-        {
+        
             timer += Time.deltaTime;
             
-            if (timer >= DISPLAY_TIME)
+            if (timer >= DISABLE_TIME)
             {
-                ShowImage2();
+                DisableSplashImage(splashImage);
             }
-        }
+            if (timer >= DISABLE_TIME1)
+            {
+                DisableSplashImage(splashImage1);
+            }
+            if (timer >= DISABLE_TIME2)
+            {
+                EnableSplashImage(splashImage2);
+            }
+
     }
     
-    private void ShowImage2()
+    private void DisableSplashImage(GameObject splashImage)
     {
-        isDisplayed = true;
+        //isDisabled = true;
         
-        if (image2 != null)
+        if (splashImage != null)
         {
-            image2.gameObject.SetActive(true);
-        }
-        
-        if (closeButton != null)
-        {
-            closeButton.gameObject.SetActive(true);
+            splashImage.SetActive(false);
         }
     }
-    
-    private void OnClickClose()
+    private void EnableSplashImage(GameObject splashImage)
     {
-        if (image2 != null)
-        {
-            Destroy(image2.gameObject);
-        }
+        //isDisabled = false;
         
-        if (closeButton != null)
+        if (splashImage != null)
         {
-            closeButton.gameObject.SetActive(false);
+            splashImage.SetActive(true);
         }
     }
+   
 }

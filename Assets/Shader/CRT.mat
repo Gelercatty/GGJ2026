@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CRT
-  m_Shader: {fileID: -6465566751694194690, guid: cb3e0eb085c5c734ab392d79e6e75c99, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: d74abc7ae5716104ba639f5d575a9523, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _scalingline:
-        m_Texture: {fileID: 2800000, guid: f4203eea9b9c7494ab7c248b59f54eb3, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -72,3 +72,4 @@ Material:
     - _pixelscalingbrightness: {r: 0.225, g: 0.85, b: 0.05, a: 0.95}
     - _resolution: {r: 640, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
