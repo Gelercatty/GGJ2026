@@ -83,10 +83,10 @@ crashlytics-build.properties
 ##################################################################
 # 统一使用 YooAsset，忽略传统的 Resources 和 StreamingAssets
 # 别的项目不要学哦
-/[Aa]ssets/Resources/
-/[Aa]ssets/Resources.meta
-/[Aa]ssets/[Ss]treamingAssets/
-/[Aa]ssets/[Ss]treamingAssets.meta
+# /[Aa]ssets/Resources/
+# /[Aa]ssets/Resources.meta
+# /[Aa]ssets/[Ss]treamingAssets/
+# /[Aa]ssets/[Ss]treamingAssets.meta
 
 # Addressables / YooAsset 生成的数据与缓存
 /[Bb]undles/
