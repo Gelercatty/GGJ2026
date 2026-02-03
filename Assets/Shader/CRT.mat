@@ -71,7 +71,7 @@ Material:
     - _QueueOffset: 0
     - _pixelscalingbrightness_1: 4
     - _scanningspeed: 0.2
-    - _screenscalinglinebrightness: 0.1
+    - _screenscalinglinebrightness: 0.01
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
