@@ -619,7 +619,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1688606769065553438, guid: 08963fd3a82767742b7f3cadde618031, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 120
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1688606769065553438, guid: 08963fd3a82767742b7f3cadde618031, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -943,7 +943,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 390577322}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999958
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1097,7 +1097,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000002861023}
+  m_AnchoredPosition: {x: -0.006567796, y: 0.00036593416}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &435183379
@@ -2006,7 +2006,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 895.5, y: 480.5}
+  m_AnchoredPosition: {x: 957, y: 545}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &968298561
@@ -2079,7 +2079,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1688606769065553438, guid: 976cc5b091b18b0419c7c530d519a0b6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 120
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1688606769065553438, guid: 976cc5b091b18b0419c7c530d519a0b6, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2291,7 +2291,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 120, y: 0}
+  m_AnchoredPosition: {x: 3, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1056395600
@@ -2765,7 +2765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1688606769065553438, guid: 08963fd3a82767742b7f3cadde618031, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1688606769065553438, guid: 08963fd3a82767742b7f3cadde618031, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3211,7 +3211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 332970353706072603, guid: 7cdb088467a15f44f8d09c43a64274e3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 102
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 332970353706072603, guid: 7cdb088467a15f44f8d09c43a64274e3, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3888,7 +3888,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
