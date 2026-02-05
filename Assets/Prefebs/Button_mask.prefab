@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1542538173618591950}
   - component: {fileID: 4215237614894312666}
   - component: {fileID: 1013772314043118049}
+  - component: {fileID: 8223924901325770962}
+  - component: {fileID: 8911610780533933252}
   m_Layer: 5
   m_Name: Button_mask
   m_TagString: Untagged
@@ -149,6 +151,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a86ccea59463d0458b16ee74e0fd760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8223924901325770962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083561269180112170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -2133396196
+      Data2: 1220192983
+      Data3: -1061553525
+      Data4: 331224210
+    Path: event:/default
+  Event: 
+  EventPlayTrigger: 17
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &8911610780533933252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083561269180112170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -2133396196
+      Data2: 1220192983
+      Data3: -1061553525
+      Data4: 331224210
+    Path: event:/default
+  Event: 
+  EventPlayTrigger: 19
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &5271778024183421860
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5082129386580667318
 RectTransform:
   m_ObjectHideFlags: 0

@@ -1,0 +1,211 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5832958372783077236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SE_lightOn/SE_special
+  m_EditorClassIdentifier: 
+  Name: SE_special
+  StudioPath: 
+  Min: 0
+  Max: 4
+  Default: 1
+  ID:
+    data1: 567959829
+    data2: 2881799485
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Switch
+  - Yujie
+  - Man
+  - Sun
+  - Gao
+  Exists: 1
+--- !u!114 &-900098855146845938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: ggj2026/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 639058919209629994
+  FileSizes:
+  - Name: Desktop
+    Value: 962
+  Exists: 1
+--- !u!114 &-664784883919162999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/New Event/session
+  m_EditorClassIdentifier: 
+  Name: session
+  StudioPath: 
+  Min: 0
+  Max: 6
+  Default: 0
+  ID:
+    data1: 108977038
+    data2: 2383450441
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-136244493220880516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/default
+  m_EditorClassIdentifier: 
+  Path: event:/default
+  Guid:
+    Data1: -2133396196
+    Data2: 1220192983
+    Data3: -1061553525
+    Data4: 331224210
+  Banks:
+  - {fileID: 2207400999805558214}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: -900098855146845938}
+  - {fileID: 2207400999805558214}
+  EditorEvents:
+  - {fileID: -136244493220880516}
+  - {fileID: 1250358287108364080}
+  - {fileID: 4326663869873164399}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: 2207400999805558214}
+  StringsBanks:
+  - {fileID: -900098855146845938}
+  cacheVersion: 131858
+  cacheTime: 639058919209629994
+  SerializableEventsDict:
+  - key: event:/default
+    index: 0
+  - key: event:/SE_lightOn
+    index: 1
+  - key: event:/New Event
+    index: 2
+--- !u!114 &1250358287108364080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SE_lightOn
+  m_EditorClassIdentifier: 
+  Path: event:/SE_lightOn
+  Guid:
+    Data1: 1908139165
+    Data2: 1090707757
+    Data3: 1793181314
+    Data4: -503698475
+  Banks:
+  - {fileID: 2207400999805558214}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -5832958372783077236}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &2207400999805558214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ggj2026/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 639058919209579238
+  FileSizes:
+  - Name: Desktop
+    Value: 3048736
+  Exists: 1
+--- !u!114 &4326663869873164399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/New Event
+  m_EditorClassIdentifier: 
+  Path: event:/New Event
+  Guid:
+    Data1: -833510199
+    Data2: 1215380189
+    Data3: 5763481
+    Data4: -924674700
+  Banks:
+  - {fileID: 2207400999805558214}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -664784883919162999}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 237488

@@ -1,0 +1,9 @@
+{98eb6f07-12fd-401c-b564-79fd27732bcb} bank:/Master
+{00f64fd3-6386-0c5e-332d-f303d6802d53} bank:/Master.strings
+{4b32b638-4f1c-43e4-9609-f84669924760} bus:/
+{1377a8b7-3954-40e0-a8c7-3720439c03fc} bus:/Reverb
+{ce51a4c9-3add-4871-99f1-57007495e2c8} event:/New Event
+{71bbe49d-e12d-4102-82c6-e16ad52bfae1} event:/SE_lightOn
+{80d6f51c-aad7-48ba-8bfa-b9c09214be13} event:/default
+{943ee937-210f-4ce5-85bf-73d49e8c4abb} parameter:/SE_special
+{92e67bcd-c370-40f9-af1b-ae071306da28} parameter:/session

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{fc54898f-848d-411d-a4f0-46b1418f1c10}">
+		<property name="assetPath">
+			<value>小高和刚自我介绍_音频_01.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>2.2021875</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8b026fb9-8279-4a28-be8d-e567c2740179}</destination>
+		</relationship>
+	</object>
+</objects>

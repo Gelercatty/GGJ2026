@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{89db1e79-ee9d-47d3-a5a5-a520d6c7b3c4}">
+		<property name="assetPath">
+			<value>GGJ-5 (2).mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>64.847999999999999</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8b026fb9-8279-4a28-be8d-e567c2740179}</destination>
+		</relationship>
+	</object>
+</objects>

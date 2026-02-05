@@ -65,9 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You Lose!
-
-    BLABLABLA'
+  m_text: "Error - 114514: \u6307\u8BA4\u9519\u8BEF\uFF01\n\u60A8\u8981\u6E05\u7406\u72AF\u4EBA\u5417\uFF1F\n\u8BE5\u884C\u4E3A\u4E0D\u53EF\u9006\uFF01"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cdb4dd03ed713ac41ba8ad9577b0ec82, type: 2}
   m_sharedMaterial: {fileID: 4447050113626239013, guid: cdb4dd03ed713ac41ba8ad9577b0ec82, type: 2}
@@ -324,7 +322,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: "\u786E\u8BA4"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cdb4dd03ed713ac41ba8ad9577b0ec82, type: 2}
   m_sharedMaterial: {fileID: 4447050113626239013, guid: cdb4dd03ed713ac41ba8ad9577b0ec82, type: 2}
