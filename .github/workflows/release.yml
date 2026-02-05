@@ -1,0 +1,42 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - FMODintro
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: FMODintro
+
+      - name: Zip output directory
+        run: |
+          Compress-Archive -Path "OUTPUT/O20260206_fmodbranch_32" -DestinationPath "CyberArchaeology™_x86_v20260206.zip" -Force
+
+      - name: Get current date
+        id: date
+        run: |
+          echo "date=$(Get-Date -Format 'yyyy-MM-dd')" >> $env:GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v20260206
+          name: CyberArchaeology™ Release v20260206
+          body: |
+            CyberArchaeology™ x86 Build
+            - Date: ${{ steps.date.outputs.date }}
+            - Branch: FMODintro
+            - Platform: Windows x86
+          files: CyberArchaeology™_x86_v20260206.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
