@@ -481,6 +481,7 @@ GameObject:
   - component: {fileID: 7346891598733601861}
   - component: {fileID: 2730772165149798167}
   - component: {fileID: 2304618402428345368}
+  - component: {fileID: 1680633773204281332}
   m_Layer: 5
   m_Name: LoseUI
   m_TagString: Untagged
@@ -574,3 +575,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cg: {fileID: 2730772165149798167}
   restartButton: {fileID: 2802286519912144904}
+--- !u!114 &1680633773204281332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8995526910593605993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a2d239b2b97ffc4caf074e76fbadec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorTexture: {fileID: 2800000, guid: a04377f52f794b74daf901df52e7cd87, type: 3}
+  outCursorTexture: {fileID: 2800000, guid: 0f68d1d4259fe6d4aac6e525837ad408, type: 3}
+  cursorMode: 0
+  hotSpot: {x: 0, y: 0}
