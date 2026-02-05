@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{5b7869d6-1476-4b18-810e-1fde7d15b612}">
+		<property name="assetPath">
+			<value>DOOMER_P1_IT'S BEEN A_音频.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>13.034666666666666</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8b026fb9-8279-4a28-be8d-e567c2740179}</destination>
+		</relationship>
+	</object>
+</objects>

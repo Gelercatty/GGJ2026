@@ -88,8 +88,10 @@ namespace GGJ2026
                     switch (GameApp.Interface.GetModel<UIStage_2_Model>().Selectedidx.Value)
                     {
                         case 0:
+                            LightOnEventInstance.setParameterByID(SE_specialParameterId, 5);
+                            break;
                         case 1:
-                            LightOnEventInstance.setParameterByID(SE_specialParameterId, 0);
+                            LightOnEventInstance.setParameterByID(SE_specialParameterId, 6);
                             break;
                         case 2:
                             LightOnEventInstance.setParameterByID(SE_specialParameterId, 4);
@@ -97,6 +99,7 @@ namespace GGJ2026
                     }
                     break;
                 default:
+                    LightOnEventInstance.setParameterByID(SE_specialParameterId, 0);
                     break;
             }
             LightOnEventInstance.start();

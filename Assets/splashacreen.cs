@@ -10,15 +10,17 @@ public class splashscreen : MonoBehaviour
     public GameObject splashImage;
     public GameObject splashImage1;
     public GameObject splashImage2;
+    public GameObject splashImage3;
 
     public Texture2D cursorTexture, outCursorTexture;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
 
     private float timer = 0f;
-    private const float DISABLE_TIME = 3f;
+    private const float DISABLE_TIME = 4f;
     private const float DISABLE_TIME1 = 0.5f;
     private const float DISABLE_TIME2 = 1.5f;
+    private const float DISABLE_TIME3 = 2f;
     //private bool isDisabled = false;
 
     void Start()
@@ -44,6 +46,10 @@ public class splashscreen : MonoBehaviour
         if (timer >= DISABLE_TIME2)
         {
             EnableSplashImage(splashImage2);
+        }
+        if (timer >= DISABLE_TIME3)
+        {
+            EnableSplashImage(splashImage3);
         }
 
     }

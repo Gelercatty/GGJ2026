@@ -1,6 +1,6 @@
 ﻿using QFramework;
 using System.Diagnostics;
-using UnityEditor.Tilemaps;
+//using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.U2D.IK;
 using Debug = UnityEngine.Debug;
@@ -48,11 +48,13 @@ namespace GGJ2026
         protected override void OnExecute()
         {
             string caseid = GameApp.Interface.GetModel<GameStateModel>().CurrentCaseId.Value;
+            var gameFlowSystem = GameApp.Interface.GetSystem<IGameFlowSystem>();
             if (GameApp.Interface.GetModel<UIStage_2_Model>().Selectedidx.Value == GameApp.Interface.GetSystem<ICaseRepositorySystem>().Get(caseid).correctIndex){
-
+                gameFlowSystem.Stage2Win();
                 GameApp.Interface.SendEvent<winStage2>();
             }else
             {
+                gameFlowSystem.Stage2Loss();
                 GameApp.Interface.SendEvent<lossStage2>();
             }
         }

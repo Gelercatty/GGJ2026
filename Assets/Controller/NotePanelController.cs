@@ -46,7 +46,7 @@ public class cNotePanelController : MonoBehaviour, IController
         }
         else if (noteText != null)
         {
-            noteText.text = "暂无收集的线索";
+            noteText.text = "暂无收集的线索，请从下方信息中找出并点选关键词吧，大侦探!  < UWU > ~";
         }
     }
 }
